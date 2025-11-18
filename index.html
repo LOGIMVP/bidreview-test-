@@ -1,288 +1,254 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Shipment Rate</title>
+    <!-- CRITICAL: Load Tailwind CSS from CDN using HTTPS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS to ensure Inter font and clean styles */
+        :root {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Define common Tailwind classes for cleaner readability */
+        .data-label {
+            @apply text-sm font-medium text-gray-500 uppercase tracking-wider;
+        }
+        .data-value {
+            @apply text-lg font-semibold text-gray-800 dark:text-gray-100;
+        }
+    </style>
+    <script>
+        // Tailwind Configuration for custom colors and dark mode
+        tailwind.config = {
+            darkMode: 'class', 
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#104e8b',
+                        'secondary-green': '#38a169',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Submit Shipment Rate&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Load Tailwind CSS --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Custom CSS to ensure Inter font and smooth transitions */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>:root {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Inter', sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.data-label {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>@apply text-sm font-medium text-gray-500 uppercase tracking-wider;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.data-value {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>@apply text-lg font-semibold text-gray-800 dark:text-gray-100;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>tailwind.config = {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>darkMode: 'class', // Enable dark mode support</p>
-<p class="p1"><span class="Apple-converted-space">            </span>theme: {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>extend: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>colors: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>'primary-blue': '#104e8b',</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>'secondary-green': '#38a169',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body class="bg-gray-50 dark:bg-gray-900 min-h-screen p-4 sm:p-8 transition-colors duration-500"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="app" class="max-w-4xl mx-auto"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Header and Instructions --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;header class="text-center mb-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="text-4xl font-extrabold text-primary-blue dark:text-white mb-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>Shipment Rate Request</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-gray-600 dark:text-gray-400 text-lg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>Please review the details for **Shipment #SHP-74892** and submit your best rate below.</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Shipment Details Card --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="shipment-card" class="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-6 sm:p-10 mb-8 border-t-4 border-secondary-green transition-shadow duration-300"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 border-b pb-3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>Shipment Overview</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/h2&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Pickup/Delivery Section --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Pickup Details --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-primary-blue/5 dark:bg-gray-700 p-4 rounded-lg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center mb-3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-6 h-6 text-primary-blue dark:text-secondary-green mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.727A8 8 0 016.343 5.273L15.228 14.158A8.001 8.001 0 0017.657 16.727zM6.343 16.727L15.228 7.842A8.001 8.001 0 0117.657 5.273L6.343 16.727z"&gt;&lt;/path&gt;&lt;/svg&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-xl font-bold text-primary-blue dark:text-white"&gt;Pickup (Origin)&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="space-y-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="data-label"&gt;Company&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="data-value" id="origin-company"&gt;ABC Manufacturing Inc.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="data-label"&gt;Address&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="data-value text-base" id="origin-address"&gt;123 Industrial Dr, Dallas, TX 75201&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="data-label"&gt;Date &amp; Time&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="data-value text-base" id="origin-datetime"&gt;2025-11-20 (Wed), 08:00 - 12:00&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Delivery Details --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-secondary-green/5 dark:bg-gray-700 p-4 rounded-lg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center mb-3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-6 h-6 text-secondary-green dark:text-primary-blue mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C7.58 2 4 5.58 4 10c0 5.5 8 12 8 12s8-6.5 8-12c0-4.42-3.58-8-8-8zm0 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"&gt;&lt;/path&gt;&lt;/svg&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-xl font-bold text-secondary-green dark:text-white"&gt;Delivery (Destination)&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="space-y-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="data-label"&gt;Company&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="data-value" id="dest-company"&gt;XYZ Distribution Center&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="data-label"&gt;Address&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="data-value text-base" id="dest-address"&gt;456 Commerce Blvd, Atlanta, GA 30303&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="data-label"&gt;Date &amp; Time&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="data-value text-base" id="dest-datetime"&gt;2025-11-22 (Fri), 14:00 - 18:00&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Commodity and Requirements Section --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t dark:border-gray-700"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="data-label"&gt;Commodity&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="data-value text-base" id="commodity-type"&gt;Palletized Electronics (Class 70)&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="data-label"&gt;Total Weight&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="data-value text-base" id="commodity-weight"&gt;20,000 lbs&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="data-label"&gt;Equipment&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="data-value text-base" id="equipment-req"&gt;53 ft Reefer Trailer Required&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Rate Submission Form --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="rate-submission" class="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-6 sm:p-10 mb-8 border-t-4 border-primary-blue"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>Submit Your Bid</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/h2&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;form id="rate-form"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="mb-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label for="carrier-rate" class="data-label block mb-2 text-primary-blue dark:text-white"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>Your All-In Rate (USD)</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="relative"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="absolute inset-y-0 left-0 flex items-center pl-3 text-2xl font-bold text-gray-500"&gt;$&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>type="number"</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>id="carrier-rate"</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>name="carrier-rate"</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>min="0.01"</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>step="0.01"</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>placeholder="e.g., 3500.00"</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>required</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>class="w-full pl-10 pr-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg text-2xl font-extrabold text-secondary-green focus:border-secondary-green focus:ring-secondary-green dark:bg-gray-700 dark:text-white transition-colors duration-300"</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-500 mt-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>Please enter the total, all-in price you are quoting for this shipment.</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;button</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>type="submit"</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>id="submit-button"</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>class="w-full py-3 mt-4 bg-secondary-green text-white text-xl font-bold rounded-lg hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-500/50 transition duration-150 ease-in-out disabled:opacity-50"</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>Submit Rate Bid</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/form&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Status Message Area --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="status-message" class="mt-6 p-4 text-center hidden rounded-lg transition-all duration-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Message content will be injected here --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Mock data to simulate shipment details being loaded from the email link/database</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const MOCK_SHIPMENT_ID = "SHP-74892";</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const API_URL = "/api/submit-carrier-rate"; // Placeholder API endpoint</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener('DOMContentLoaded', () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const form = document.getElementById('rate-form');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const rateInput = document.getElementById('carrier-rate');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const submitButton = document.getElementById('submit-button');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const statusMessage = document.getElementById('status-message');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>/**</p>
-<p class="p1"><span class="Apple-converted-space">             </span>* Helper function to show status messages.</p>
-<p class="p1"><span class="Apple-converted-space">             </span>* @param {string} message - The message text.</p>
-<p class="p1"><span class="Apple-converted-space">             </span>* @param {string} type - 'success' or 'error'.</p>
-<p class="p1"><span class="Apple-converted-space">             </span>*/</p>
-<p class="p1"><span class="Apple-converted-space">            </span>function showStatus(message, type) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>statusMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700');</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (type === 'success') {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>statusMessage.classList.add('bg-green-100', 'text-green-700');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>} else if (type === 'error') {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>statusMessage.classList.add('bg-red-100', 'text-red-700');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>statusMessage.innerHTML = `</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center justify-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${type === 'success' ? 'M5 13l4 4L19 7' : 'M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'}"&gt;&lt;/path&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/svg&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="font-semibold"&gt;${message}&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Simulate form submission</p>
-<p class="p1"><span class="Apple-converted-space">            </span>form.addEventListener('submit', async (e) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>e.preventDefault();</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const rate = parseFloat(rateInput.value).toFixed(2);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (isNaN(rate) || rate &lt;= 0) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>showStatus("Please enter a valid rate greater than zero.", 'error');</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>return;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>submitButton.disabled = true;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>submitButton.textContent = 'Submitting...';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>statusMessage.classList.add('hidden');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// In a real application, you would replace this mock delay and fetch call</p>
-<p class="p1"><span class="Apple-converted-space">                </span>// with a proper API call to your backend.</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// Simulate an API POST request</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const payload = {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>shipmentId: MOCK_SHIPMENT_ID,</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>rate: rate,</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>// In a real scenario, the carrier ID/token would be extracted<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                        </span>// from the email link's query parameters for authentication</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>carrierToken: 'mock-carrier-token-12345'<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// *** MOCK: Replace this with an actual fetch request to your server ***</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// Example:<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>/*</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const response = await fetch(API_URL, {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>method: 'POST',</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>headers: { 'Content-Type': 'application/json' },</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>body: JSON.stringify(payload)</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
-<p class="p2"><span class="Apple-converted-space">                    </span></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>if (!response.ok) {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>throw new Error('Server error during submission.');</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const result = await response.json();</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>*/</p>
-<p class="p2"><span class="Apple-converted-space">                    </span></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// Mock delay for success</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>await new Promise(resolve =&gt; setTimeout(resolve, 1500));<span class="Apple-converted-space"> </span></p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// Show success message and disable the form permanently</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>showStatus(`Rate of $${rate} successfully submitted for Shipment #${MOCK_SHIPMENT_ID}. We will be in touch shortly.`, 'success');</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>form.reset();</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>rateInput.disabled = true;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>submitButton.textContent = 'Rate Submitted';</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>submitButton.classList.remove('bg-secondary-green', 'hover:bg-green-700');</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>submitButton.classList.add('bg-gray-400', 'cursor-not-allowed');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>} catch (error) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// Re-enable button on error</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>submitButton.disabled = false;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>submitButton.textContent = 'Submit Rate Bid';</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>showStatus(`Submission failed. Please check your network or try again. (${error.message})`, 'error');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>} finally {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>// In the success case, the button remains disabled.</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>if (rateInput.disabled === false) {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>submitButton.disabled = false;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Initial focus for better usability</p>
-<p class="p1"><span class="Apple-converted-space">            </span>rateInput.focus();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+<!-- Added h-full and w-full to the body for robust layout -->
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen p-4 sm:p-8 transition-colors duration-500 w-full h-full">
+
+    <div id="app" class="max-w-4xl mx-auto">
+        <!-- Header and Instructions -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-extrabold text-primary-blue dark:text-white mb-2">
+                Shipment Rate Request
+            </h1>
+            <p class="text-gray-600 dark:text-gray-400 text-lg">
+                Please review the details for **Shipment #SHP-74892** and submit your best rate below.
+            </p>
+        </header>
+
+        <!-- Shipment Details Card -->
+        <div id="shipment-card" class="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-6 sm:p-10 mb-8 border-t-4 border-secondary-green transition-shadow duration-300">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 border-b pb-3">
+                Shipment Overview
+            </h2>
+            
+            <!-- Pickup/Delivery Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <!-- Pickup Details -->
+                <div class="bg-primary-blue/5 dark:bg-gray-700 p-4 rounded-lg">
+                    <div class="flex items-center mb-3">
+                        <svg class="w-6 h-6 text-primary-blue dark:text-secondary-green mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.727A8 8 0 016.343 5.273L15.228 14.158A8.001 8.001 0 0017.657 16.727zM6.343 16.727L15.228 7.842A8.001 8.001 0 0117.657 5.273L6.343 16.727z"></path></svg>
+                        <h3 class="text-xl font-bold text-primary-blue dark:text-white">Pickup (Origin)</h3>
+                    </div>
+                    <div class="space-y-2">
+                        <div>
+                            <p class="data-label">Company</p>
+                            <p class="data-value" id="origin-company">ABC Manufacturing Inc.</p>
+                        </div>
+                        <div>
+                            <p class="data-label">Address</p>
+                            <p class="data-value text-base" id="origin-address">123 Industrial Dr, Dallas, TX 75201</p>
+                        </div>
+                        <div>
+                            <p class="data-label">Date & Time</p>
+                            <p class="data-value text-base" id="origin-datetime">2025-11-20 (Wed), 08:00 - 12:00</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delivery Details -->
+                <div class="bg-secondary-green/5 dark:bg-gray-700 p-4 rounded-lg">
+                    <div class="flex items-center mb-3">
+                        <svg class="w-6 h-6 text-secondary-green dark:text-primary-blue mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C7.58 2 4 5.58 4 10c0 5.5 8 12 8 12s8-6.5 8-12c0-4.42-3.58-8-8-8zm0 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"></path></svg>
+                        <h3 class="text-xl font-bold text-secondary-green dark:text-white">Delivery (Destination)</h3>
+                    </div>
+                    <div class="space-y-2">
+                        <div>
+                            <p class="data-label">Company</p>
+                            <p class="data-value" id="dest-company">XYZ Distribution Center</p>
+                        </div>
+                        <div>
+                            <p class="data-label">Address</p>
+                            <p class="data-value text-base" id="dest-address">456 Commerce Blvd, Atlanta, GA 30303</p>
+                        </div>
+                        <div>
+                            <p class="data-label">Date & Time</p>
+                            <p class="data-value text-base" id="dest-datetime">2025-11-22 (Fri), 14:00 - 18:00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Commodity and Requirements Section -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t dark:border-gray-700">
+                <div>
+                    <p class="data-label">Commodity</p>
+                    <p class="data-value text-base" id="commodity-type">Palletized Electronics (Class 70)</p>
+                </div>
+                <div>
+                    <p class="data-label">Total Weight</p>
+                    <p class="data-value text-base" id="commodity-weight">20,000 lbs</p>
+                </div>
+                <div>
+                    <p class="data-label">Equipment</p>
+                    <p class="data-value text-base" id="equipment-req">53 ft Reefer Trailer Required</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rate Submission Form -->
+        <div id="rate-submission" class="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-6 sm:p-10 mb-8 border-t-4 border-primary-blue">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
+                Submit Your Bid
+            </h2>
+            
+            <form id="rate-form">
+                <div class="mb-4">
+                    <label for="carrier-rate" class="data-label block mb-2 text-primary-blue dark:text-white">
+                        Your All-In Rate (USD)
+                    </label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-2xl font-bold text-gray-500">$</span>
+                        <input
+                            type="number"
+                            id="carrier-rate"
+                            name="carrier-rate"
+                            min="0.01"
+                            step="0.01"
+                            placeholder="e.g., 3500.00"
+                            required
+                            class="w-full pl-10 pr-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg text-2xl font-extrabold text-secondary-green focus:border-secondary-green focus:ring-secondary-green dark:bg-gray-700 dark:text-white transition-colors duration-300"
+                        >
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        Please enter the total, all-in price you are quoting for this shipment.
+                    </p>
+                </div>
+
+                <button
+                    type="submit"
+                    id="submit-button"
+                    class="w-full py-3 mt-4 bg-secondary-green text-white text-xl font-bold rounded-lg hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-500/50 transition duration-150 ease-in-out disabled:opacity-50"
+                >
+                    Submit Rate Bid
+                </button>
+            </form>
+
+            <!-- Status Message Area -->
+            <div id="status-message" class="mt-6 p-4 text-center hidden rounded-lg transition-all duration-500">
+                <!-- Message content will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock data to simulate shipment details being loaded from the email link/database
+        const MOCK_SHIPMENT_ID = "SHP-74892";
+        // NOTE: In a real app, this should point to your server's rate submission endpoint.
+        const API_URL = "/api/submit-carrier-rate"; 
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('rate-form');
+            const rateInput = document.getElementById('carrier-rate');
+            const submitButton = document.getElementById('submit-button');
+            const statusMessage = document.getElementById('status-message');
+
+            /**
+             * Helper function to show status messages.
+             * @param {string} message - The message text.
+             * @param {string} type - 'success' or 'error'.
+             */
+            function showStatus(message, type) {
+                statusMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700');
+                
+                if (type === 'success') {
+                    statusMessage.classList.add('bg-green-100', 'text-green-700');
+                } else if (type === 'error') {
+                    statusMessage.classList.add('bg-red-100', 'text-red-700');
+                }
+                
+                statusMessage.innerHTML = `
+                    <div class="flex items-center justify-center">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${type === 'success' ? 'M5 13l4 4L19 7' : 'M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'}"></path>
+                        </svg>
+                        <p class="font-semibold">${message}</p>
+                    </div>
+                `;
+                statusMessage.classList.remove('hidden');
+            }
+
+            // Simulate form submission
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const rate = parseFloat(rateInput.value).toFixed(2);
+
+                if (isNaN(rate) || rate <= 0) {
+                    showStatus("Please enter a valid rate greater than zero.", 'error');
+                    return;
+                }
+
+                submitButton.disabled = true;
+                submitButton.textContent = 'Submitting...';
+                statusMessage.classList.add('hidden');
+                
+                try {
+                    // --- This is the mock API submission area ---
+                    const payload = {
+                        shipmentId: MOCK_SHIPMENT_ID,
+                        rate: rate, 
+                        carrierToken: 'mock-carrier-token-12345' 
+                    };
+
+                    console.log('Data prepared for submission:', payload);
+
+                    // Mock delay to simulate network latency
+                    await new Promise(resolve => setTimeout(resolve, 1500)); 
+
+                    // --- Successful Submission Response ---
+                    showStatus(`Rate of $${rate} successfully submitted for Shipment #${MOCK_SHIPMENT_ID}. We will be in touch shortly.`, 'success');
+                    
+                    // Lock the form after success
+                    rateInput.disabled = true;
+                    submitButton.textContent = 'Rate Submitted';
+                    submitButton.classList.remove('bg-secondary-green', 'hover:bg-green-700');
+                    submitButton.classList.add('bg-gray-400', 'cursor-not-allowed');
+
+                } catch (error) {
+                    // --- Error Handling ---
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Submit Rate Bid';
+
+                    showStatus(`Submission failed. Please check your network or try again. (${error.message})`, 'error');
+                }
+            });
+            
+            // Initial focus for better usability
+            rateInput.focus();
+        });
+    </script>
 </body>
 </html>

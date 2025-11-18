@@ -14,7 +14,7 @@
             border-radius: 12px; 
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05); 
         }
-        /* CRITICAL FIX: The blue border line under major headers */
+        /* The blue border line under major headers */
         .section-header { 
             border-bottom: 2px solid #3b82f6; 
             padding-bottom: 8px; 
@@ -37,7 +37,7 @@
             <a href="#" class="text-blue-600 hover:text-blue-800">https://bidreview-test/L4839</a>
         </div>
         
-        <!-- PICKUP AND DELIVERY STOPS (CRITICAL FIX: Merged into a single card with a vertical divider) -->
+        <!-- PICKUP AND DELIVERY STOPS (Merged into a single card with a vertical divider) -->
         <div class="info-card p-0 overflow-hidden">
             <div class="grid md:grid-cols-2 divide-x divide-gray-200">
                 
@@ -71,13 +71,13 @@
             <div class="md:col-span-2 info-card p-6">
                 <h2 class="section-header">Shipment Specifications</h2>
                 
-                <!-- CRITICAL FIX: Ensure left side content is left-aligned and right side is right-aligned -->
                 <div class="grid grid-cols-2 gap-y-6">
                     <!-- Left Column (LTL, Skids) -->
                     <div class="space-y-6">
                         <div class="detail-item">
                             <p class="text-xs text-gray-500 mb-1">Equipment</p>
-                            <p class="text-3xl font-bold text-gray-900 leading-none">LTL</p>
+                            <!-- UPDATED: Changed text-3xl to text-xl to match other figures -->
+                            <p class="text-xl font-bold text-gray-900 leading-none">LTL</p>
                             <p class="text-gray-500 text-sm">(Dry Van)</p>
                         </div>
                         <div class="detail-item">
@@ -114,10 +114,18 @@
                     </div>
                 </div>
                 <h3 class="font-bold text-gray-700 mt-4 mb-2">Attachments</h3>
-                <a href="#" class="text-blue-600 text-sm hover:underline flex items-center justify-between">
-                    <span class="truncate">Shipper Documents (.pdf)</span>
-                    <span class="ml-2 text-xs text-gray-500">(View / Download)</span>
-                </a>
+                <div class="flex items-center justify-between text-sm">
+                    <span class="truncate text-gray-700">Shipper Documents (.pdf)</span>
+                    <!-- UPDATED: Replaced anchor tag with two buttons -->
+                    <div class="flex space-x-2">
+                        <button onclick="console.log('Viewing document...')" class="px-2 py-1 text-xs font-semibold rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-100 transition duration-150">
+                            View
+                        </button>
+                        <button onclick="console.log('Downloading document...')" class="px-2 py-1 text-xs font-semibold rounded-md bg-blue-500 text-white hover:bg-blue-600 transition duration-150">
+                            Download
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 

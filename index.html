@@ -22,11 +22,6 @@
         .no-spinners {
             -moz-appearance: textfield; /* Firefox */
         }
-        
-        /* FIX: Ensures table columns share width equally for correct centering */
-        .table-col-fix th, .table-col-fix td {
-            width: 33.333%;
-        }
     </style>
 </head>
 <body class="p-4 md:p-8">
@@ -116,19 +111,19 @@
 
         <div class="info-card p-6 mb-6">
             <h2 class="section-header">Skid Details</h2>
-            <table class="w-full text-sm table-col-fix">
+            <table class="w-full text-sm">
                 <thead>
                     <tr class="text-gray-500 uppercase tracking-wider border-b"> 
-                        <th class="py-2 text-left">Quantity</th>
-                        <th class="py-2 text-center">Dimensions (L×W×H IN)</th>
-                        <th class="py-2 text-right">Weight Per Skid (LBS)</th>
+                        <th class="py-2 text-left w-1/4">Quantity</th>
+                        <th class="py-2 text-center w-1/2">Dimensions (L×W×H IN)</th>
+                        <th class="py-2 text-right w-1/4">Weight Per Skid (LBS)</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="border-b last:border-b-0">
-                        <td class="py-2 font-bold text-left">8</td>
-                        <td class="py-2 text-center">48 x 40 x 94</td>
-                        <td class="py-2 text-right">500</td>
+                        <td class="py-2 font-bold text-left w-1/4">8</td>
+                        <td class="py-2 text-center w-1/2">48 x 40 x 94</td>
+                        <td class="py-2 text-right w-1/4">500</td>
                     </tr>
                 </tbody>
             </table>

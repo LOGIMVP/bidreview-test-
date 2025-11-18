@@ -3,284 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Load L#4839: Detailed Shipment Information</title>
-    <!-- Load Tailwind CSS from CDN -->
+    <title>AI Image Generator</title>
+    <!-- Load Tailwind CSS for modern styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom styles for readability and spacing */
-        body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
-        .info-card { 
-            background-color: white; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05); 
+        /* Custom styles for aesthetic enhancements */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f9;
         }
-        /* The blue border line under major headers */
-        .section-header { 
-            border-bottom: 2px solid #3b82f6; 
-            padding-bottom: 8px; 
-            margin-bottom: 16px; 
-            color: #1f2937; 
-            font-weight: 700; 
-            font-size: 1.125rem; /* Ensure consistency with text-lg */
+        .container-card {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
-        /* Style for the bid box */
-        .bid-box { background-color: #e5f1ff; border: 1px solid #93c5fd; }
+        #image-output {
+            min-height: 300px;
+            background-color: #e2e8f0;
+            border: 2px dashed #94a3b8;
+            transition: all 0.3s ease;
+        }
+        #image-output img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+        }
+        /* Custom spinning animation for the loader */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #3b82f6; /* Blue spinner */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
     </style>
 </head>
-<body class="p-4 md:p-8">
+<body class="p-4 md:p-8 min-h-screen flex items-center justify-center">
 
-    <div id="app" class="max-w-6xl mx-auto space-y-6">
-        
-        <h1 class="text-2xl font-bold text-gray-800 mb-2">Load #L-4839: Detailed Shipment Information</h1>
-        <div class="text-sm mb-6">
-            <span class="text-gray-500">Tracking Link:</span> 
-            <a href="#" class="text-blue-600 hover:text-blue-800">https://bidreview-test/L4839</a>
+    <div class="container-card bg-white p-6 md:p-10 w-full max-w-xl rounded-xl">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">AI Image Creator (Imagen 4.0)</h1>
+
+        <!-- Input Section -->
+        <div class="mb-6">
+            <label for="prompt-input" class="block text-sm font-medium text-gray-700 mb-2">
+                What image would you like to create?
+            </label>
+            <textarea id="prompt-input" rows="3" placeholder="e.g., A watercolor painting of a futuristic city at sunset, highly detailed."
+                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out resize-none"></textarea>
         </div>
-        
-        <!-- PICKUP AND DELIVERY STOPS (Merged into a single card with a vertical divider) -->
-        <div class="info-card p-0 overflow-hidden">
-            <div class="grid md:grid-cols-2 divide-x divide-gray-200">
-                
-                <!-- Pickup Stop -->
-                <div class="p-6">
-                    <h2 class="section-header">Pickup Stops (1):</h2>
-                    <div class="text-sm">
-                        <p class="font-semibold text-gray-700">42158 Rd 33 E, Ste Anne, MB, R5H1R1, CA</p>
-                        <p class="text-gray-500">Contact: La Cocina Foods</p>
-                        <a href="tel:204-381-4471" class="text-blue-600 hover:text-blue-800">204.381.4471</a>
-                    </div>
-                </div>
-                
-                <!-- Delivery Stop -->
-                <div class="p-6">
-                    <h2 class="section-header">Delivery Stops (1):</h2>
-                    <div class="text-sm">
-                        <p class="font-semibold text-gray-700">19580 TELEGRAPH TRAIL, Surrey, BC, V4N4H1, CA</p>
-                        <p class="text-gray-500">Contact: Associated Grocers</p>
-                        <p class="text-red-600 font-bold block mb-1">Appointment Required</p>
-                        <a href="tel:6048887061" class="text-blue-600 hover:text-blue-800">(604) 888-7061 ext 357</a>
-                    </div>
+
+        <!-- Generate Button -->
+        <button id="generate-button"
+                class="w-full py-3 px-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 disabled:opacity-50"
+                onclick="generateImage()">
+            Generate Image
+        </button>
+
+        <!-- Output and Status Section -->
+        <div class="mt-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4 text-center">Generated Image</h2>
+            <div id="status-message" class="text-center p-3 mb-4 text-sm rounded-lg hidden"></div>
+
+            <div id="image-output"
+                 class="relative flex items-center justify-center rounded-lg overflow-hidden">
+                <p id="placeholder-text" class="text-gray-500">
+                    Your generated image will appear here.
+                </p>
+                <!-- Loading Spinner Area -->
+                <div id="loading-indicator" class="hidden flex flex-col items-center justify-center space-y-3">
+                    <div class="spinner"></div>
+                    <p class="text-blue-600 font-medium">Generating...</p>
                 </div>
             </div>
-        </div>
-
-        <!-- SPECIFICATIONS AND SCHEDULING -->
-        <div class="grid md:grid-cols-3 gap-6">
-            
-            <!-- Specifications (2/3 width) -->
-            <div class="md:col-span-2 info-card p-6">
-                <h2 class="section-header">Shipment Specifications</h2>
-                
-                <div class="grid grid-cols-2 gap-y-6">
-                    <!-- Left Column (LTL, Skids) -->
-                    <div class="space-y-6">
-                        <div class="detail-item">
-                            <p class="text-xs text-gray-500 mb-1">Equipment</p>
-                            <!-- UPDATED: Changed text-3xl to text-xl to match other figures -->
-                            <p class="text-xl font-bold text-gray-900 leading-none">LTL</p>
-                            <p class="text-gray-500 text-sm">(Dry Van)</p>
-                        </div>
-                        <div class="detail-item">
-                            <p class="text-xs text-gray-500 mb-1">Total Skid Quantity</p>
-                            <p class="text-xl font-bold text-gray-900 leading-none">8</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Right Column (Weight, Linear Feet) - Right Aligned -->
-                    <div class="space-y-6 text-right">
-                        <div class="detail-item">
-                            <p class="text-xs text-gray-500 mb-1">Total Weight</p>
-                            <p class="text-xl font-bold text-gray-900 leading-none">4,000 <span class="text-base font-normal text-gray-700">lbs</span></p>
-                        </div>
-                        <div class="detail-item">
-                            <p class="text-xs text-gray-500 mb-1">Est. Linear Feet</p>
-                            <p class="text-xl font-bold text-gray-900 leading-none">13.3 <span class="text-base font-normal text-gray-700">ft</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Scheduling and Attachments (1/3 width) -->
-            <div class="md:col-span-1 info-card p-6">
-                <h2 class="section-header">Scheduling</h2>
-                <div class="space-y-3 text-sm pb-4 mb-4 border-b border-gray-200">
-                    <div class="flex justify-between">
-                        <p class="text-gray-700 font-medium">Pickup Deadline</p>
-                        <p class="font-bold text-red-600">Nov 17, 2025</p>
-                    </div>
-                    <div class="flex justify-between">
-                        <p class="text-gray-700 font-medium">Drop Off Deadline</p>
-                        <p class="font-bold text-gray-700">Nov 24, 2025</p>
-                    </div>
-                </div>
-                <h3 class="font-bold text-gray-700 mt-4 mb-2">Attachments</h3>
-                <div class="flex items-center justify-between text-sm">
-                    <span class="truncate text-gray-700">Shipper Documents (.pdf)</span>
-                    <!-- UPDATED: Replaced anchor tag with two buttons -->
-                    <div class="flex space-x-2">
-                        <button onclick="console.log('Viewing document...')" class="px-2 py-1 text-xs font-semibold rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-100 transition duration-150">
-                            View
-                        </button>
-                        <button onclick="console.log('Downloading document...')" class="px-2 py-1 text-xs font-semibold rounded-md bg-blue-500 text-white hover:bg-blue-600 transition duration-150">
-                            Download
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SKID DETAILS TABLE -->
-        <div class="info-card p-6">
-            <h2 class="section-header">Skid Details</h2>
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm">
-                    <thead>
-                        <!-- Table header text is medium gray and bold -->
-                        <tr class="text-left text-gray-500 uppercase tracking-wider font-bold border-b border-gray-200">
-                            <th class="py-2 px-0">Quantity</th>
-                            <th class="py-2 px-0">Dimensions (L×W×H IN)</th>
-                            <th class="py-2 px-0 text-right">Weight Per Skid (LBS)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Table data is plain text -->
-                        <tr>
-                            <td class="py-2 px-0 text-gray-700 font-medium">8</td>
-                            <td class="py-2 px-0 text-gray-700 font-medium">48 x 40 x 94</td>
-                            <td class="py-2 px-0 text-gray-700 font-medium text-right">500</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- SPECIAL NOTES -->
-        <div class="info-card p-6 bg-yellow-50 border-yellow-500 border-l-4">
-            <h2 class="text-lg font-bold text-yellow-800 mb-2">Special Notes</h2>
-            <p class="text-sm text-gray-700 leading-relaxed">
-                Shipped food, cannot have hazardous materials, needs a clean trailer. Carrier to book delivery appointments and accommodate after-hours delivery where required. Appointment needs to be booked ASAP and attended on time to avoid late fees. Receiving appointments can be booked via phone Monday – Friday 7 AM. Carrier needs to provide a lumper for this shipment. Pickup hours M-F: 6am-6pm. Delivery hours are Monday to Friday 6:30AM – Noon.
-            </p>
-        </div>
-
-        <!-- SUBMIT YOUR BID FORM -->
-        <div class="info-card p-6 bid-box">
-            <h2 class="section-header !border-blue-800 !text-blue-800">Submit Your Bid</h2>
-            <form id="bidForm">
-                <!-- Bid Amount -->
-                <div class="mb-4">
-                    <label for="bidRate" class="block text-sm font-medium text-gray-700 mb-1">$ <span id="currencySymbol">USD</span> Rate (Required)</label>
-                    <input 
-                        type="number" 
-                        id="bidRate" 
-                        name="bidRate" 
-                        required 
-                        min="0.01" 
-                        step="0.01"
-                        class="w-full px-4 py-3 border border-blue-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-lg font-semibold shadow-sm" 
-                        placeholder="e.g., 1250.00">
-                </div>
-
-                <!-- Notes/Details -->
-                <div class="mb-6">
-                    <label for="bidNotes" class="block text-sm font-medium text-gray-700 mb-1">Notes (e.g., Available today, 53' Dry Van, Quote valid for 24 hours)</label>
-                    <textarea 
-                        id="bidNotes" 
-                        name="bidNotes" 
-                        rows="3" 
-                        class="w-full px-4 py-3 border border-blue-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-base shadow-sm resize-none" 
-                        placeholder="Optional details for the shipper..."></textarea>
-                </div>
-
-                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-150 ease-in-out shadow-lg">
-                    Submit Bid
-                </button>
-            </form>
-            
-            <div id="statusMessage" class="mt-4 p-3 text-center text-sm font-semibold hidden rounded-lg"></div>
         </div>
     </div>
 
     <script>
-        // --- PROTOTYPE SIMULATION LOGIC ---
-        const bidForm = document.getElementById('bidForm');
-        const statusMessage = document.getElementById('statusMessage');
-        const bidRateInput = document.getElementById('bidRate');
-
-        const LOAD_ID = "L-4839";
-        const CARRIER_ID = "CARR-987"; 
-        const CARRIER_EMAIL = "carrier@example.com"; 
+        // Global Variables
+        const apiKey = ""; // API Key is provided by the runtime environment
+        const apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict";
+        
+        // DOM Elements
+        const promptInput = document.getElementById('prompt-input');
+        const generateButton = document.getElementById('generate-button');
+        const imageOutput = document.getElementById('image-output');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const placeholderText = document.getElementById('placeholder-text');
+        const statusMessage = document.getElementById('status-message');
 
         /**
-         * Shows a status message to the user.
-         * @param {string} message - The message text.
-         * @param {string} type - 'success' or 'error'.
+         * Utility function to show status messages.
+         * @param {string} message - The text to display.
+         * @param {string} type - 'success', 'error', or 'info' for styling.
          */
-        function showStatus(message, type) {
+        function showStatus(message, type = 'info') {
             statusMessage.textContent = message;
-            statusMessage.classList.remove('hidden', 'bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
+            statusMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700', 'bg-blue-100', 'text-blue-700');
             
-            if (type === 'success') {
-                statusMessage.classList.add('bg-green-100', 'text-green-700');
-            } else {
+            if (type === 'error') {
                 statusMessage.classList.add('bg-red-100', 'text-red-700');
+            } else if (type === 'success') {
+                statusMessage.classList.add('bg-green-100', 'text-green-700');
+            } else { // info
+                statusMessage.classList.add('bg-blue-100', 'text-blue-700');
             }
-            statusMessage.style.display = 'block';
         }
 
-        bidForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const rate = bidRateInput.value;
-            const notes = document.getElementById('bidNotes').value;
-            const submitButton = bidForm.querySelector('button');
+        /**
+         * Clears all output and status messages.
+         */
+        function clearOutput() {
+            imageOutput.innerHTML = '';
+            statusMessage.classList.add('hidden');
+        }
 
-            if (!rate || parseFloat(rate) <= 0) {
-                showStatus('Please enter a valid rate greater than zero.', 'error');
+        /**
+         * Main function to handle image generation via the API.
+         */
+        async function generateImage() {
+            const prompt = promptInput.value.trim();
+
+            if (!prompt) {
+                showStatus("Please enter a creative prompt to generate an image.", 'error');
                 return;
             }
+            
+            // 1. Setup UI for Loading State
+            clearOutput();
+            placeholderText.classList.add('hidden');
+            loadingIndicator.classList.remove('hidden');
+            generateButton.disabled = true;
+            showStatus("Sending request to Imagen 4.0...", 'info');
 
-            submitButton.disabled = true;
-            submitButton.textContent = 'Submitting...';
-            statusMessage.style.display = 'none';
-
-            // 1. COLLECT THE DATA
-            const bidData = {
-                load_id: LOAD_ID,
-                carrier_id: CARRIER_ID,
-                carrier_email: CARRIER_EMAIL,
-                // Combine the structured rate and the unstructured notes.
-                raw_carrier_bid_text: `My rate for Load ${LOAD_ID} is $${parseFloat(rate).toFixed(2)} USD. Notes: ${notes}.`
+            const payload = {
+                instances: [{ prompt: prompt }],
+                parameters: {
+                    sampleCount: 1,
+                    aspectRatio: "1:1", // You can change this, e.g., "16:9"
+                }
             };
+            
+            let attempts = 0;
+            const maxAttempts = 3;
 
-            try {
-                // 2. SIMULATE API CALL
-                console.log('--- Data Prepared for Bridge (Mock Submission) ---');
-                console.log(JSON.stringify(bidData, null, 2));
+            while (attempts < maxAttempts) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
 
-                // Simulate a network delay
-                await new Promise(resolve => setTimeout(resolve, 1500)); 
-                
-                // SIMULATE SUCCESS
-                showStatus(`Bid for Load ${LOAD_ID} submitted successfully! Your rate of $${parseFloat(rate).toFixed(2)} USD has been recorded.`, 'success');
-                
-                submitButton.textContent = 'Bid Submitted';
-                // Lock the form fields after success
-                bidRateInput.disabled = true;
-                document.getElementById('bidNotes').disabled = true;
-                submitButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-                submitButton.classList.add('bg-gray-400', 'cursor-not-allowed');
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
 
+                    const result = await response.json();
+                    
+                    // 2. Process the response
+                    const base64Data = result?.predictions?.[0]?.bytesBase64Encoded;
 
-            } catch (error) {
-                // SIMULATE ERROR
-                showStatus(`Submission failed: ${error.message}. Please try again.`, 'error');
-                submitButton.disabled = false;
-                submitButton.textContent = 'Submit Bid';
+                    if (base64Data) {
+                        const imageUrl = `data:image/png;base64,${base64Data}`;
+                        
+                        // 3. Update UI with the image
+                        clearOutput();
+                        const img = document.createElement('img');
+                        img.src = imageUrl;
+                        img.alt = prompt;
+                        img.className = "w-full h-full object-contain";
+                        imageOutput.appendChild(img);
+
+                        showStatus("Image generated successfully!", 'success');
+                        
+                        // Break the retry loop on success
+                        break; 
+                    } else {
+                        // Handle case where API call succeeds but returns no data
+                        throw new Error("Generation failed: No image data returned.");
+                    }
+
+                } catch (error) {
+                    attempts++;
+                    const delay = Math.pow(2, attempts) * 1000; // Exponential backoff: 2s, 4s, 8s
+                    console.error(`Attempt ${attempts} failed:`, error);
+
+                    if (attempts < maxAttempts) {
+                        showStatus(`Generation failed. Retrying in ${delay / 1000} seconds...`, 'error');
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                    } else {
+                        // 4. Update UI for final failure
+                        clearOutput();
+                        placeholderText.classList.remove('hidden');
+                        showStatus("Image generation failed after multiple retries. Please try a different prompt.", 'error');
+                    }
+                }
             }
-        });
 
-        // Set currency symbol based on mock data
-        document.getElementById('currencySymbol').textContent = 'USD';
+            // 5. Cleanup UI
+            loadingIndicator.classList.add('hidden');
+            generateButton.disabled = false;
+        }
     </script>
 </body>
 </html>

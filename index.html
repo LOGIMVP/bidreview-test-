@@ -12,6 +12,16 @@
         .section-header { border-bottom: 2px solid #3b82f6; padding-bottom: 8px; margin-bottom: 16px; color: #1f2937; font-weight: 700; }
         .detail-item { padding: 4px 0; }
         .bid-box { background-color: #e5f1ff; border: 1px solid #93c5fd; }
+
+        /* Custom CSS to hide the up/down arrows (spin buttons) for number input */
+        .no-spinners::-webkit-outer-spin-button,
+        .no-spinners::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .no-spinners {
+            -moz-appearance: textfield; /* Firefox */
+        }
     </style>
 </head>
 <body class="p-4 md:p-8">
@@ -35,8 +45,8 @@
                 <div class="text-sm">
                     <p class="font-semibold text-gray-700">19580 TELEGRAPH TRAIL, Surrey, BC, V4N4H1, CA</p>
                     <p class="text-gray-500">Contact: Associated Grocers</p>
-                    <a href="#" class="text-red-600 font-bold block mb-1">Appointment Required</a>
                     <a href="tel:6048887061" class="text-blue-600 hover:text-blue-800">(604) 888-7061 ext 357</a>
+                    <a href="#" class="text-red-600 font-bold block mb-1">Appointment Required</a>
                 </div>
             </div>
         </div>
@@ -46,7 +56,7 @@
                 <h2 class="section-header">Shipment Specifications</h2>
                 <div class="grid grid-cols-2 gap-4 text-center">
                     <div class="detail-item border-r pr-4">
-                        <p class="text-3xl font-bold text-gray-900">LTL</p>
+                        <p class="text-xl font-bold text-gray-900">LTL</p>
                         <p class="text-gray-500 text-xs">(Dry Van)</p>
                     </div>
                     <div class="detail-item">
@@ -95,24 +105,25 @@
                         <a href="DOWNLOAD_LINK_2" download class="text-blue-600 hover:text-blue-800 font-semibold">Download</a>
                     </div>
                 </div>
-                </div>
+                
+            </div>
         </div>
 
         <div class="info-card p-6 mb-6">
             <h2 class="section-header">Skid Details</h2>
             <table class="w-full text-sm">
                 <thead>
-                    <tr class="text-left text-gray-500 uppercase tracking-wider border-b">
-                        <th class="py-2">Quantity</th>
-                        <th class="py-2">Dimensions (L×W×H IN)</th>
-                        <th class="py-2">Weight Per Skid (LBS)</th>
+                    <tr class="text-gray-500 uppercase tracking-wider border-b"> 
+                        <th class="py-2 text-left">Quantity</th>
+                        <th class="py-2 text-center">Dimensions (L×W×H IN)</th>
+                        <th class="py-2 text-right">Weight Per Skid (LBS)</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="border-b last:border-b-0">
-                        <td class="py-2 font-bold">8</td>
-                        <td class="py-2">48 x 40 x 94</td>
-                        <td class="py-2">500</td>
+                        <td class="py-2 font-bold text-left">8</td>
+                        <td class="py-2 text-center">48 x 40 x 94</td>
+                        <td class="py-2 text-right">500</td>
                     </tr>
                 </tbody>
             </table>
@@ -128,9 +139,21 @@
         <div class="info-card p-6 bid-box">
             <h2 class="text-xl font-bold text-blue-800 mb-4">Submit Your Bid</h2>
             <form id="bidForm">
+                
                 <div class="mb-4">
-                    <label for="bidRate" class="block text-sm font-medium text-gray-700 mb-1">$ <span id="currencySymbol">USD</span> Rate (Required)</label>
-                    <input type="number" id="bidRate" name="bidRate" required class="w-full px-4 py-3 border border-blue-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-lg shadow-sm" placeholder="e.g., 1250.00">
+                    <label for="currency" class="block text-sm font-medium text-gray-700 mb-1">Currency</label>
+                    <select id="currency" name="currency" class="w-full px-4 py-3 border border-blue-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-lg shadow-sm">
+                        <option value="USD" selected>USD - US Dollar</option>
+                        <option value="CAD">CAD - Canadian Dollar</option>
+                    </select>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="bidRate" class="block text-sm font-medium text-gray-700 mb-1">Rate (Required)</label>
+                    <div class="relative">
+                        <span class="absolute left-0 inset-y-0 flex items-center pl-3 text-lg text-gray-500 font-bold">$</span>
+                        <input type="number" id="bidRate" name="bidRate" required class="w-full pl-8 pr-4 py-3 border border-blue-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-lg shadow-sm no-spinners" placeholder="e.g., 1250.00">
+                    </div>
                 </div>
 
                 <div class="mb-6">
@@ -152,16 +175,33 @@
         // This simulates the data being sent to your MAKE automation
         const bidForm = document.getElementById('bidForm');
         const statusMessage = document.getElementById('statusMessage');
+        const currencySelector = document.getElementById('currency');
+        const bidRateInput = document.getElementById('bidRate');
+        const currencySymbolSpan = document.querySelector('.relative > span');
 
         // This would be dynamically generated by your Google Sheet/Make flow
         const LOAD_ID = "L-4839";
         const CARRIER_ID = "CARR-987"; // Carrier Identifier
         const CARRIER_EMAIL = "carrier@example.com"; // Carrier email used for notification
 
+        // Function to update the symbol next to the input field
+        function updateCurrencySymbol() {
+            const selectedCurrency = currencySelector.value;
+            currencySymbolSpan.textContent = selectedCurrency === 'CAD' ? 'C$' : '$';
+        }
+
+        // Event listener for currency change
+        currencySelector.addEventListener('change', updateCurrencySymbol);
+
+        // Initialize symbol on load
+        updateCurrencySymbol();
+
+
         bidForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const rate = document.getElementById('bidRate').value;
+            const rate = bidRateInput.value;
+            const currency = currencySelector.value;
             const notes = document.getElementById('bidNotes').value;
             
             if (!rate) {
@@ -178,7 +218,7 @@
                 carrier_email: CARRIER_EMAIL,
                 // Combine the structured rate and the unstructured notes. 
                 // This simulates the single block of text your Gemini AI will receive for parsing.
-                raw_carrier_bid_text: `My rate for Load ${LOAD_ID} is $${rate} USD. Notes: ${notes}.`
+                raw_carrier_bid_text: `My rate for Load ${LOAD_ID} is ${rate} ${currency}. Notes: ${notes}.`
             };
 
             console.log('--- Data Prepared for Make/Zapier Bridge ---');
@@ -188,7 +228,7 @@
             // In a real scenario, this would be a fetch() call to your Make/Zapier webhook.
             // The Make webhook would then call the Gemini API.
             
-            statusMessage.textContent = `Bid for Load ${LOAD_ID} submitted successfully! Your rate of $${rate} USD has been recorded. (Check your browser console for the mock data sent to the AI.)`;
+            statusMessage.textContent = `Bid for Load ${LOAD_ID} submitted successfully! Your rate of ${rate} ${currency} has been recorded. (Check your browser console for the mock data sent to the AI.)`;
             statusMessage.classList.remove('hidden', 'text-red-600');
             statusMessage.classList.add('text-green-600');
             
@@ -199,9 +239,6 @@
             // bidForm.querySelector('button').disabled = true;
             // bidForm.reset(); 
         });
-
-        // Set currency symbol based on mock data (or URL parameter in real app)
-        document.getElementById('currencySymbol').textContent = 'USD'; 
     </script>
 </body>
 </html>

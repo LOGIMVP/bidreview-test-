@@ -3,202 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Load L#4839: Detailed Shipment Information</title>
-    <!-- Load Tailwind CSS from CDN -->
+    <title>Freight Connect Bid Submission</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Custom styles for readability and spacing */
         body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
-        .info-card { 
-            background-color: white; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05); 
-        }
-        /* The blue border line under major headers */
-        .section-header { 
-            border-bottom: 2px solid #3b82f6; 
-            padding-bottom: 6px; /* Reduced padding below line */
-            margin-bottom: 8px; /* Reduced margin below line (equivalent to mb-2) */
-            color: #1f2937; 
-            font-weight: 700; 
-            font-size: 1.125rem;
-        }
-        /* Style for the bid box */
+        .info-card { background-color: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05); }
+        .section-header { border-bottom: 2px solid #3b82f6; padding-bottom: 8px; margin-bottom: 16px; color: #1f2937; font-weight: 700; }
+        .detail-item { padding: 4px 0; }
         .bid-box { background-color: #e5f1ff; border: 1px solid #93c5fd; }
-        
-        /* Custom spacing and centering for the Skid Details table */
-        .skid-table th:nth-child(1), .skid-table td:nth-child(1) { width: 20%; text-align: left; padding-left: 0; }
-        .skid-table th:nth-child(2), .skid-table td:nth-child(2) { width: 60%; text-align: center; } 
-        .skid-table th:nth-child(3), .skid-table td:nth-child(3) { width: 20%; text-align: right; padding-right: 0; }
-        .skid-table th { padding-top: 0.5rem; padding-bottom: 0.5rem; }
-        .skid-table td { padding-top: 0.3rem; padding-bottom: 0.3rem; } 
     </style>
 </head>
 <body class="p-4 md:p-8">
 
-    <div id="app" class="max-w-6xl mx-auto space-y-4"> 
+    <div id="app" class="max-w-4xl mx-auto">
         
-        <h1 class="text-2xl font-bold text-gray-800 mb-4">Load #L-4839: Detailed Shipment Information</h1> 
-        
-        <!-- PICKUP AND DELIVERY STOPS -->
-        <div class="info-card p-0 overflow-hidden">
-            <div class="grid md:grid-cols-2 divide-x divide-gray-200">
-                
-                <!-- Pickup Stop - Padding p-4, tight text spacing -->
-                <div class="p-4">
-                    <h2 class="section-header">Pickup Stops (1):</h2>
-                    <div class="text-sm space-y-0.5"> <!-- Reduced vertical spacing here -->
-                        <p class="font-semibold text-gray-700 leading-tight">42158 Rd 33 E, Ste Anne, MB, R5H1R1, CA</p>
-                        <p class="text-gray-500 leading-tight">Contact: La Cocina Foods</p>
-                        <a href="tel:204-381-4471" class="text-blue-600 hover:text-blue-800 block leading-tight">204.381.4471</a>
-                    </div>
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">Load #L-4839: Detailed Shipment Information</h1>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <div class="info-card p-6">
+                <h2 class="section-header">Pickup Stops (1):</h2>
+                <div class="text-sm">
+                    <p class="font-semibold text-gray-700">42158 Rd 33 E, Ste Anne, MB, R5H1R1, CA</p>
+                    <p class="text-gray-500">Contact: La Cocina Foods</p>
+                    <a href="tel:204-381-4471" class="text-blue-600 hover:text-blue-800">204.381.4471</a>
                 </div>
-                
-                <!-- Delivery Stop - Padding p-4, tight text spacing -->
-                <div class="p-4">
-                    <h2 class="section-header">Delivery Stops (1):</h2>
-                    <div class="text-sm space-y-0.5"> <!-- Reduced vertical spacing here -->
-                        <p class="font-semibold text-gray-700 leading-tight">19580 TELEGRAPH TRAIL, Surrey, BC, V4N4H1, CA</p>
-                        <p class="text-gray-500 leading-tight">Contact: Associated Grocers</p>
-                        <p class="text-red-600 font-bold block leading-tight">Appointment Required</p>
-                        <a href="tel:6048887061" class="text-blue-600 hover:text-blue-800 block leading-tight">(604) 888-7061 ext 357</a>
-                    </div>
+            </div>
+            
+            <div class="info-card p-6">
+                <h2 class="section-header">Delivery Stops (1):</h2>
+                <div class="text-sm">
+                    <p class="font-semibold text-gray-700">19580 TELEGRAPH TRAIL, Surrey, BC, V4N4H1, CA</p>
+                    <p class="text-gray-500">Contact: Associated Grocers</p>
+                    <a href="#" class="text-red-600 font-bold block mb-1">Appointment Required</a>
+                    <a href="tel:6048887061" class="text-blue-600 hover:text-blue-800">(604) 888-7061 ext 357</a>
                 </div>
             </div>
         </div>
 
-        <!-- SPECIFICATIONS AND SCHEDULING -->
-        <div class="grid md:grid-cols-3 gap-4"> 
-            
-            <!-- Shipment Specifications Card (2/3 width) - Padding p-4 -->
-            <div class="md:col-span-2 info-card p-4">
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <div class="info-card p-6">
                 <h2 class="section-header">Shipment Specifications</h2>
-                
-                <!-- TIGHT LAYOUT: Grid to fill space and minimize vertical gaps -->
-                <div class="grid grid-cols-2 text-sm divide-x divide-gray-200 h-full">
-                    
-                    <!-- Left Column: Equipment & Quantity -->
-                    <div class="flex flex-col justify-between pr-4 h-full">
-                        
-                        <!-- Equipment (LTL) - Reduced to text-2xl and removed all vertical padding -->
-                        <div>
-                            <p class="text-xs text-gray-500 font-medium leading-none">Equipment</p>
-                            <p class="text-2xl font-bold text-gray-900 leading-tight">LTL</p>
-                            <p class="text-gray-500 text-sm leading-tight">(Dry Van)</p>
-                        </div>
-
-                        <!-- Total Skid Quantity (8) - Reduced to text-2xl and removed all vertical padding -->
-                        <div>
-                            <p class="text-xs text-gray-500 font-medium leading-none">Total Skid Quantity</p>
-                            <p class="text-2xl font-bold text-gray-900 leading-tight">8</p>
-                        </div>
+                <div class="grid grid-cols-2 gap-4 text-center">
+                    <div class="detail-item border-r pr-4">
+                        <p class="text-3xl font-bold text-gray-900">LTL</p>
+                        <p class="text-gray-500 text-xs">(Dry Van)</p>
                     </div>
-
-                    <!-- Right Column: Weight & Linear Feet - Reduced to text-2xl and removed all vertical padding -->
-                    <div class="flex flex-col justify-between pl-4 text-right h-full">
-
-                        <!-- Total Weight (4,000 lbs) - Reduced to text-2xl and removed all vertical padding -->
-                        <div>
-                            <p class="text-xs text-gray-500 font-medium leading-none">Total Weight</p>
-                            <p class="text-2xl font-bold text-gray-900 leading-tight">4,000 <span class="text-base font-normal text-gray-700">lbs</span></p>
-                        </div>
-
-                        <!-- Est. Linear Feet (13.3 ft) - Reduced to text-2xl and removed all vertical padding -->
-                        <div>
-                            <p class="text-xs text-gray-500 font-medium leading-none">Est. Linear Feet</p>
-                            <p class="text-2xl font-bold text-gray-900 leading-tight">13.3 <span class="text-base font-normal text-gray-700">ft</span></p>
-                        </div>
+                    <div class="detail-item">
+                        <p class="text-xl font-bold text-gray-900">4,000 <span class="text-sm font-normal text-gray-500">lbs</span></p>
+                        <p class="text-gray-500 text-xs">Total Weight</p>
+                    </div>
+                    <div class="detail-item border-r pr-4">
+                        <p class="text-xl font-bold text-gray-900">8</p>
+                        <p class="text-gray-500 text-xs">Total Skid Quantity</p>
+                    </div>
+                    <div class="detail-item">
+                        <p class="text-xl font-bold text-gray-900">13.3 <span class="text-sm font-normal text-gray-500">ft</span></p>
+                        <p class="text-gray-500 text-xs">Est. Linear Feet</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Scheduling and Attachments Card (1/3 width) - Padding p-4 -->
-            <div class="md:col-span-1 info-card p-4">
+            <div class="info-card p-6">
                 <h2 class="section-header">Scheduling</h2>
-                <!-- Reduced space-y and border margin -->
-                <div class="space-y-1 text-sm border-b border-gray-200 pb-2 mb-2">
-                    <div class="flex justify-between leading-tight">
-                        <p class="text-gray-700 font-medium">Pickup Deadline</p>
+                <div class="space-y-2 text-sm">
+                    <div class="flex justify-between detail-item">
+                        <p class="text-gray-500">Pickup Deadline</p>
                         <p class="font-bold text-red-600">Nov 17, 2025</p>
                     </div>
-                    <div class="flex justify-between leading-tight">
-                        <p class="text-gray-700 font-medium">Drop Off Deadline</p>
+                    <div class="flex justify-between detail-item">
+                        <p class="text-gray-500">Drop Off Deadline</p>
                         <p class="font-bold text-gray-700">Nov 24, 2025</p>
                     </div>
                 </div>
-                <h3 class="font-bold text-gray-700 mt-2 mb-2">Attachments</h3>
-                <div class="flex items-center justify-between text-sm leading-tight">
-                    <span class="truncate text-blue-600 hover:text-blue-800">Shipper Documents (.pdf)</span>
+                <h3 class="font-bold text-gray-700 mt-4 mb-2">Attachments</h3>
+                
+                <div class="flex items-center justify-between text-sm py-1">
+                    <span class="truncate text-blue-600">Shipper Documents (.pdf)</span>
                     <div class="flex space-x-2">
-                        <button onclick="console.log('Viewing document...')" class="px-2 py-1 text-xs font-semibold rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-100 transition duration-150">
-                            View
-                        </button>
-                        <button onclick="console.log('Downloading document...')" class="px-2 py-1 text-xs font-semibold rounded-md bg-blue-500 text-white hover:bg-blue-600 transition duration-150">
-                            Download
-                        </button>
+                        <a href="VIEW_LINK_GOES_HERE" target="_blank" class="text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 transition duration-150 ease-in-out flex items-center">
+                             <span class="mr-1">👁️</span> View
+                        </a>
+                        <a href="DOWNLOAD_LINK_GOES_HERE" download class="text-xs px-2 py-1 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-150 ease-in-out flex items-center">
+                            <span class="mr-1">⬇️</span> Download
+                        </a>
                     </div>
                 </div>
-            </div>
+                </div>
         </div>
 
-        <!-- SKID DETAILS TABLE - Padding p-4 -->
-        <div class="info-card p-4">
+        <div class="info-card p-6 mb-6">
             <h2 class="section-header">Skid Details</h2>
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm skid-table"> 
-                    <thead>
-                        <tr class="text-left text-gray-500 uppercase tracking-wider font-bold border-b border-gray-200">
-                            <th class="px-0">Quantity</th>
-                            <th class="px-0 text-center">Dimensions (L×W×H IN)</th>
-                            <th class="px-0 text-right">Weight Per Skid (LBS)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="px-0 text-gray-700 font-medium">8</td>
-                            <td class="px-0 text-gray-700 font-medium text-center">48 x 40 x 94</td>
-                            <td class="px-0 text-gray-700 font-medium text-right">500</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="text-left text-gray-500 uppercase tracking-wider border-b">
+                        <th class="py-2">Quantity</th>
+                        <th class="py-2">Dimensions (L×W×H IN)</th>
+                        <th class="py-2">Weight Per Skid (LBS)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b last:border-b-0">
+                        <td class="py-2 font-bold">8</td>
+                        <td class="py-2">48 x 40 x 94</td>
+                        <td class="py-2">500</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
-        <!-- SPECIAL NOTES - Padding p-4 -->
-        <div class="info-card p-4 bg-yellow-50 border-yellow-500 border-l-4">
-            <h2 class="text-lg font-bold text-yellow-800 mb-2">Special Notes</h2>
+        <div class="info-card p-6 mb-6 bg-yellow-50 border-yellow-300 border-l-4">
+            <h2 class="section-header !text-yellow-800 !border-b-yellow-500">Special Notes</h2>
             <p class="text-sm text-gray-700 leading-relaxed">
-                Shipped food, cannot have hazardous materials, needs a clean trailer. Carrier to book delivery appointments and accommodate after-hours delivery where required. Appointment needs to be booked ASAP and attended on time to avoid late fees. Receiving appointments can be booked via phone Monday – Friday 7 AM. Carrier needs to provide a lumper for this shipment. Pickup hours M-F: 6am-6pm. Delivery hours are Monday to Friday 6:30AM – Noon.
+                Shipped food, cannot have hazardous materials, needs a clean trailer. Carrier to book delivery appointments and accommodate after-hours delivery where required. Appointment needs to be booked ASAP and attended on time to avoid late fees. Receiving appointments can be booked via phone Monday – Friday 7 AM. Carrier needs to provide a lumper for this shipment. Pickup hours M-F: 8am-5pm. Delivery hours are Monday to Friday 6:30AM – Noon.
             </p>
         </div>
 
-        <!-- SUBMIT YOUR BID FORM - Padding p-4 -->
-        <div class="info-card p-4 bid-box">
-            <h2 class="section-header !border-blue-800 !text-blue-800">Submit Your Bid</h2>
+        <div class="info-card p-6 bid-box">
+            <h2 class="text-xl font-bold text-blue-800 mb-4">Submit Your Bid</h2>
             <form id="bidForm">
-                <!-- Bid Amount -->
                 <div class="mb-4">
                     <label for="bidRate" class="block text-sm font-medium text-gray-700 mb-1">$ <span id="currencySymbol">USD</span> Rate (Required)</label>
-                    <input 
-                        type="number" 
-                        id="bidRate" 
-                        name="bidRate" 
-                        required 
-                        min="0.01" 
-                        step="0.01"
-                        class="w-full px-4 py-3 border border-blue-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-lg font-semibold shadow-sm" 
-                        placeholder="e.g., 1250.00">
+                    <input type="number" id="bidRate" name="bidRate" required class="w-full px-4 py-3 border border-blue-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-lg shadow-sm" placeholder="e.g., 1250.00">
                 </div>
 
-                <!-- Notes/Details -->
                 <div class="mb-6">
                     <label for="bidNotes" class="block text-sm font-medium text-gray-700 mb-1">Notes (e.g., Available today, 53' Dry Van, Quote valid for 24 hours)</label>
-                    <textarea 
-                        id="bidNotes" 
-                        name="bidNotes" 
-                        rows="3" 
-                        class="w-full px-4 py-3 border border-blue-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-base shadow-sm resize-none" 
-                        placeholder="Optional details for the shipper..."></textarea>
+                    <textarea id="bidNotes" name="bidNotes" rows="2" class="w-full px-4 py-3 border border-blue-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-base shadow-sm" placeholder="Optional details for the shipper..."></textarea>
                 </div>
 
                 <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-150 ease-in-out shadow-lg">
@@ -206,91 +137,65 @@
                 </button>
             </form>
             
-            <div id="statusMessage" class="mt-4 p-3 text-center text-sm font-semibold hidden rounded-lg"></div>
+            <div id="statusMessage" class="mt-4 text-center text-sm font-semibold hidden"></div>
         </div>
     </div>
 
     <script>
         // --- PROTOTYPE SIMULATION LOGIC ---
+        // This simulates the data being sent to your MAKE automation
         const bidForm = document.getElementById('bidForm');
         const statusMessage = document.getElementById('statusMessage');
-        const bidRateInput = document.getElementById('bidRate');
 
+        // This would be dynamically generated by your Google Sheet/Make flow
         const LOAD_ID = "L-4839";
-        const CARRIER_ID = "CARR-987"; 
-        const CARRIER_EMAIL = "carrier@example.com"; 
+        const CARRIER_ID = "CARR-987"; // Carrier Identifier
+        const CARRIER_EMAIL = "carrier@example.com"; // Carrier email used for notification
 
-        /**
-         * Shows a status message to the user.
-         * @param {string} message - The message text.
-         * @param {string} type - 'success' or 'error'.
-         */
-        function showStatus(message, type) {
-            statusMessage.textContent = message;
-            statusMessage.classList.remove('hidden', 'bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
-            
-            if (type === 'success') {
-                statusMessage.classList.add('bg-green-100', 'text-green-700');
-            } else {
-                statusMessage.classList.add('bg-red-100', 'text-red-700');
-            }
-            statusMessage.style.display = 'block';
-        }
-
-        bidForm.addEventListener('submit', async function(e) {
+        bidForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const rate = bidRateInput.value;
+            const rate = document.getElementById('bidRate').value;
             const notes = document.getElementById('bidNotes').value;
-            const submitButton = bidForm.querySelector('button');
-
-            if (!rate || parseFloat(rate) <= 0) {
-                showStatus('Please enter a valid rate greater than zero.', 'error');
+            
+            if (!rate) {
+                statusMessage.textContent = 'Please enter a rate to submit your bid.';
+                statusMessage.classList.remove('hidden', 'text-green-600', 'text-red-600');
+                statusMessage.classList.add('text-red-600');
                 return;
             }
-
-            submitButton.disabled = true;
-            submitButton.textContent = 'Submitting...';
-            statusMessage.style.display = 'none';
 
             // 1. COLLECT THE DATA
             const bidData = {
                 load_id: LOAD_ID,
                 carrier_id: CARRIER_ID,
                 carrier_email: CARRIER_EMAIL,
-                // Combine the structured rate and the unstructured notes.
-                raw_carrier_bid_text: `My rate for Load ${LOAD_ID} is $${parseFloat(rate).toFixed(2)} USD. Notes: ${notes}.`
+                // Combine the structured rate and the unstructured notes. 
+                // This simulates the single block of text your Gemini AI will receive for parsing.
+                raw_carrier_bid_text: `My rate for Load ${LOAD_ID} is $${rate} USD. Notes: ${notes}.`
             };
 
-            try {
-                // 2. SIMULATE API CALL
-                console.log('--- Data Prepared for Bridge (Mock Submission) ---');
-                console.log(JSON.stringify(bidData, null, 2));
+            console.log('--- Data Prepared for Make/Zapier Bridge ---');
+            console.log(JSON.stringify(bidData, null, 2));
+            
+            // 2. SIMULATE SUCCESS
+            // In a real scenario, this would be a fetch() call to your Make/Zapier webhook.
+            // The Make webhook would then call the Gemini API.
+            
+            statusMessage.textContent = `Bid for Load ${LOAD_ID} submitted successfully! Your rate of $${rate} USD has been recorded. (Check your browser console for the mock data sent to the AI.)`;
+            statusMessage.classList.remove('hidden', 'text-red-600');
+            statusMessage.classList.add('text-green-600');
+            
+            // Log the data to the console for confirmation
+            console.log(bidData);
 
-                // Simulate a network delay
-                await new Promise(resolve => setTimeout(resolve, 1500)); 
-                
-                // SIMULATE SUCCESS
-                showStatus(`Bid for Load ${LOAD_ID} submitted successfully! Your rate of $${parseFloat(rate).toFixed(2)} USD has been recorded.`, 'success');
-                
-                submitButton.textContent = 'Bid Submitted';
-                // Lock the form fields after success
-                bidRateInput.disabled = true;
-                document.getElementById('bidNotes').disabled = true;
-                submitButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-                submitButton.classList.add('bg-gray-400', 'cursor-not-allowed');
-
-
-            } catch (error) {
-                // SIMULATE ERROR
-                showStatus(`Submission failed: ${error.message}. Please try again.`, 'error');
-                submitButton.disabled = false;
-                submitButton.textContent = 'Submit Bid';
-            }
+            // You might want to prevent repeated submissions after a successful one
+            // bidForm.querySelector('button').disabled = true;
+            // bidForm.reset(); 
         });
 
-        // Set currency symbol based on mock data
-        document.getElementById('currencySymbol').textContent = 'USD';
+        // Set currency symbol based on mock data (or URL parameter in real app)
+        document.getElementById('currencySymbol').textContent = 'USD'; 
     </script>
 </body>
 </html>

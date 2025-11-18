@@ -13,23 +13,27 @@
         }
         /* Custom Utility Classes to match the screenshot design */
         .card {
-            @apply bg-white dark:bg-gray-800 rounded-lg shadow-sm p-4; /* Reduced shadow and padding for a cleaner look */
+            /* White background, rounded corners, subtle shadow (no border for most cards) */
+            @apply bg-white dark:bg-gray-800 rounded-lg shadow-sm p-5;
         }
-        .data-block {
-            @apply py-3;
+        .section-title {
+            /* Matches the size and weight of the titles in the screenshot */
+            @apply text-lg font-bold text-gray-800 dark:text-white mb-4;
         }
         .data-label {
-            @apply text-sm font-medium text-gray-500 uppercase tracking-wider block;
+            /* Small, gray, uppercase text */
+            @apply text-xs font-medium text-gray-500 uppercase tracking-wider block;
         }
         .data-value {
-            @apply text-base font-semibold text-gray-900 dark:text-white;
+            /* Standard text color and size */
+            @apply text-sm font-normal text-gray-800 dark:text-white;
         }
-        /* Styling for the Skid Details table */
-        .skid-table-header {
-            @apply text-xs font-bold text-gray-500 uppercase tracking-wider bg-gray-50 dark:bg-gray-700;
-        }
+        /* Style for the Skid Details table (no top/bottom padding) */
         .skid-table-data {
-            @apply text-sm text-gray-900 dark:text-white font-medium py-3;
+            @apply text-sm text-gray-800 dark:text-white font-medium py-2;
+        }
+        .skid-table-header {
+            @apply text-xs font-bold text-gray-500 uppercase tracking-wider bg-gray-50 dark:bg-gray-700 px-4 py-2;
         }
     </style>
     <script>
@@ -39,8 +43,8 @@
                 extend: {
                     colors: {
                         'primary-blue': '#1a73e8', 
-                        'text-dark': '#374151', /* Matches the main text color in the screenshot */
-                        'bg-light': '#f3f4f6', /* Matches the light gray background */
+                        'text-dark': '#374151', 
+                        'bg-light': '#f3f4f6', 
                     }
                 }
             }
@@ -58,194 +62,189 @@
             </h1>
             <div class="text-sm mt-1">
                 <span class="text-gray-500">Tracking Link:</span> 
-                <a href="#" class="text-primary-blue hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500">https://cloud.samsara.com/load-details/L-4839</a>
+                <a href="#" class="text-primary-blue hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500">https://bidreview-test/L4839</a>
             </div>
+            <!-- Horizontal rule to match the design's separator style -->
+            <hr class="mt-4 border-gray-200 dark:border-gray-700">
         </header>
 
-        <!-- Main Content Grid (Two Columns: Stops, Specs/Scheduling) -->
-        <div class="space-y-6">
-            
-            <!-- 1. Pickup/Delivery Stops (Single Card with Internal Split) -->
-            <div class="card p-0 overflow-hidden border border-gray-200 dark:border-gray-700">
-                <div class="grid grid-cols-1 sm:grid-cols-2 divide-x divide-gray-200 dark:divide-gray-700">
-                    
-                    <!-- Pickup Stop -->
-                    <div class="p-6">
-                        <h2 class="text-base font-bold text-text-dark dark:text-white mb-2">Pickup Stops (1):</h2>
-                        <p class="data-value !font-normal text-sm">42158 Rd 33 E, Ste Anne, MB, R5H1R1, CA</p>
-                        <p class="text-sm text-gray-500">Contact: La Cocina Foods</p>
-                        <a href="tel:204-381-4471" class="text-primary-blue text-sm">204-381-4471</a>
-                    </div>
-                    
-                    <!-- Delivery Stop -->
-                    <div class="p-6">
-                        <h2 class="text-base font-bold text-text-dark dark:text-white mb-2">Delivery Stops (1):</h2>
-                        <p class="data-value !font-normal text-sm">19580 TELEGRAPH TRAIL, Surrey, BC, V4N4H1, CA</p>
-                        <p class="text-sm text-gray-500">Contact: Associated Grocers</p>
-                        <p class="text-sm text-red-600 font-medium">Appointment Required</p>
-                        <a href="tel:604-888-7081" class="text-primary-blue text-sm">(604) 888-7081 ext 357</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2. Shipment Specifications & Scheduling (Two-Column Layout) -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- 1. Pickup/Delivery Stops (Two-column layout with separators) -->
+        <div class="card p-0 overflow-hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 divide-x divide-gray-200 dark:divide-gray-700">
                 
-                <!-- Left Column (Specs, Skid Details) -->
-                <div class="md:col-span-2 space-y-6">
-                    
-                    <!-- Shipment Specifications Card -->
-                    <div class="card border border-gray-200 dark:border-gray-700">
-                        <h3 class="text-base font-bold text-text-dark dark:text-white mb-4">Shipment Specifications</h3>
-                        <div class="grid grid-cols-4 gap-4 border-b border-gray-100 dark:border-gray-700 pb-4 mb-4">
-                            <!-- Column 1: Equipment/LTL -->
-                            <div class="space-y-4">
-                                <div>
-                                    <p class="text-xs text-gray-500">Equipment</p>
-                                    <p class="text-2xl font-extrabold text-text-dark dark:text-white leading-none">LTL</p>
-                                    <p class="text-sm text-gray-500">(Dry Van)</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Column 2: Total Weight -->
-                            <div class="space-y-4">
-                                <div>
-                                    <p class="text-xs text-gray-500">Total Weight</p>
-                                    <p class="text-2xl font-extrabold text-text-dark dark:text-white leading-none">4,000 <span class="text-base font-normal">lbs</span></p>
-                                </div>
-                            </div>
-
-                            <!-- Column 3: Total Skid Quantity -->
-                            <div class="space-y-4">
-                                <div>
-                                    <p class="text-xs text-gray-500">Total Skid Quantity</p>
-                                    <p class="text-2xl font-extrabold text-text-dark dark:text-white leading-none">8</p>
-                                </div>
-                            </div>
-
-                            <!-- Column 4: Estimated Linear Feet -->
-                            <div class="space-y-4">
-                                <div>
-                                    <p class="text-xs text-gray-500">Est. Linear Feet</p>
-                                    <p class="text-2xl font-extrabold text-text-dark dark:text-white leading-none">13.3 <span class="text-base font-normal">ft</span></p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Skid Details Sub-section -->
-                        <div class="mt-4">
-                            <h4 class="text-base font-bold text-text-dark dark:text-white mb-4">Skid Details</h4>
-                            <div class="overflow-x-auto border border-gray-200 dark:border-gray-700 rounded-lg">
-                                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                                    <thead class="bg-gray-50 dark:bg-gray-700">
-                                        <tr>
-                                            <th scope="col" class="skid-table-header px-4 py-2 text-left">QUANTITY</th>
-                                            <th scope="col" class="skid-table-header px-4 py-2 text-left">DIMENSIONS (LxWxH IN)</th>
-                                            <th scope="col" class="skid-table-header px-4 py-2 text-right">WEIGHT PER SKID (LBS)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                                        <!-- Example Skid Row -->
-                                        <tr>
-                                            <td class="skid-table-data px-4 text-left">8</td>
-                                            <td class="skid-table-data px-4 text-left">48 x 40 x 94</td>
-                                            <td class="skid-table-data px-4 text-right">500</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Pickup Stop -->
+                <div class="p-4">
+                    <h2 class="text-base font-bold text-gray-800 dark:text-white mb-1">Pickup Stops (1):</h2>
+                    <p class="data-value !font-medium text-sm">42158 Rd 33 E, Ste Anne, MB, R5H1R1, CA</p>
+                    <p class="text-sm text-gray-500">Contact: La Cocina Foods</p>
+                    <a href="tel:204-381-4471" class="text-primary-blue text-sm font-medium">204-381-4471</a>
                 </div>
-
-                <!-- Right Column (Scheduling) -->
-                <div class="md:col-span-1 space-y-6">
-                    <!-- Scheduling Card -->
-                    <div class="card border border-gray-200 dark:border-gray-700">
-                        <h3 class="text-base font-bold text-text-dark dark:text-white mb-4">Scheduling</h3>
-                        
-                        <div class="space-y-3 mb-4">
-                            <div class="flex justify-between">
-                                <span class="data-label !text-sm">Pickup Deadline</span>
-                                <span class="font-bold text-red-500 dark:text-red-400">Nov 17, 2025</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="data-label !text-sm">Drop Off Deadline</span>
-                                <span class="font-bold text-red-500 dark:text-red-400">Nov 24, 2025</span>
-                            </div>
-                        </div>
-
-                        <!-- Attachments placeholder -->
-                        <div>
-                            <h3 class="text-base font-bold text-text-dark dark:text-white mb-2">Attachments</h3>
-                            <a href="#" class="text-primary-blue dark:text-blue-400 hover:underline text-sm font-medium">Shipper Documents (.pdf)</a>
-                            <span class="text-xs text-gray-500 dark:text-gray-400 float-right">(View / Download)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3. Special Notes (Alert/Highlight Card - Full Width) -->
-            <div class="p-4 rounded-lg bg-yellow-50 dark:bg-yellow-900/50 border-l-4 border-yellow-500">
-                <h3 class="text-sm font-bold text-yellow-800 dark:text-yellow-200 mb-2">Special Notes</h3>
-                <p class="text-sm text-yellow-700 dark:text-yellow-300">
-                    Shipped food, cannot have hazardous materials, needs a clean trailer. Carrier to book delivery appointments and accommodate after-hours delivery when required. Appointment needs to be booked ASAP and attended on time to avoid late fees. Receiving appointments can be booked via phone Monday – Friday 7 AM. Carrier needs to provide a lumper for this shipment. Pickup hours M-F: 6am-6pm. Delivery hours are Monday to Friday 6:30AM – Noon.
-                </p>
-            </div>
-        
-            <!-- 4. Submit Bid Form (Full Width Card) -->
-            <div class="card p-0 overflow-hidden border border-gray-200 dark:border-gray-700">
-                <h2 class="text-lg font-bold text-text-dark dark:text-white p-4 border-b border-gray-100 dark:border-gray-700">
-                    Submit Your Bid
-                </h2>
                 
-                <form id="rate-form" class="p-4 pt-6 space-y-4">
-                    <div class="relative">
-                        <input
-                            type="number"
-                            id="carrier-rate"
-                            name="carrier-rate"
-                            min="0.01"
-                            step="0.01"
-                            placeholder="e.g., 1250.00"
-                            required
-                            class="w-full pl-3 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-md text-lg font-semibold text-text-dark dark:text-white focus:border-primary-blue focus:ring-primary-blue dark:bg-gray-700 transition-colors duration-300"
-                        >
-                        <!-- Floating Label -->
-                        <label for="carrier-rate" class="absolute -top-2 left-3 bg-white dark:bg-gray-800 px-1 text-xs text-primary-blue dark:text-blue-300 font-medium">
-                            $ USD Rate (Required)
-                        </label>
-                    </div>
-
-                    <div>
-                        <textarea
-                            id="carrier-notes"
-                            name="carrier-notes"
-                            rows="3"
-                            placeholder="Optional details for the shipper..."
-                            class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md text-sm text-gray-700 dark:text-gray-300 focus:border-primary-blue focus:ring-primary-blue dark:bg-gray-700 transition-colors duration-300 resize-none"
-                        ></textarea>
-                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                            Notes (e.g., Available today, 53' Dry Van, Quote valid for 24 hours)
-                        </p>
-                    </div>
-
-                    <button
-                        type="submit"
-                        id="submit-button"
-                        class="w-full py-3 bg-primary-blue text-white text-base font-bold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-500/50 transition duration-150 ease-in-out disabled:opacity-50"
-                    >
-                        Submit Bid
-                    </button>
-                </form>
-
-                <!-- Status Message Area (Matches the full-width success/error box look) -->
-                <div id="status-message" class="p-4 text-center hidden transition-all duration-500">
-                    <!-- Message content will be injected here -->
+                <!-- Delivery Stop -->
+                <div class="p-4">
+                    <h2 class="text-base font-bold text-gray-800 dark:text-white mb-1">Delivery Stops (1):</h2>
+                    <p class="data-value !font-medium text-sm">19580 TELEGRAPH TRAIL, Surrey, BC, V4N4H1, CA</p>
+                    <p class="text-sm text-gray-500">Contact: Associated Grocers</p>
+                    <p class="text-sm text-red-600 font-medium inline-block mr-2">Appointment Required</p>
+                    <a href="tel:604-888-7081" class="text-primary-blue text-sm font-medium">(604) 888-7081 ext 357</a>
                 </div>
             </div>
-
         </div>
+
+        <!-- 2. Shipment Specifications & Scheduling (Two-Column Layout) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Left Column: Specs -->
+            <div class="md:col-span-2 card">
+                <h3 class="section-title">Shipment Specifications</h3>
+                
+                <!-- Specifications Grid -->
+                <div class="grid grid-cols-4 gap-4 pb-4">
+                    <!-- Column 1: LTL / Total Skid Quantity -->
+                    <div class="flex flex-col justify-between h-full">
+                        <div>
+                            <p class="data-label">Equipment</p>
+                            <p class="text-xl font-extrabold text-text-dark dark:text-white leading-tight">LTL</p>
+                            <p class="text-sm text-gray-500">(Dry Van)</p>
+                        </div>
+                        <div class="mt-4">
+                            <p class="data-label">Total Skid Quantity</p>
+                            <p class="text-xl font-extrabold text-text-dark dark:text-white leading-tight">8</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Column 2: Weight / Linear Feet -->
+                    <div class="flex flex-col justify-between h-full col-span-2">
+                         <!-- Weight -->
+                        <div class="text-right">
+                            <p class="data-label">Total Weight</p>
+                            <p class="text-xl font-extrabold text-text-dark dark:text-white leading-tight">4,000 <span class="text-base font-normal">lbs</span></p>
+                        </div>
+                        <!-- Linear Feet -->
+                        <div class="mt-4 text-right">
+                            <p class="data-label">Est. Linear Feet</p>
+                            <p class="text-xl font-extrabold text-text-dark dark:text-white leading-tight">13.3 <span class="text-base font-normal">ft</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Column 3 (Empty Spacer to push content to the right edge) -->
+                    <div></div>
+                </div>
+            </div>
+
+            <!-- Right Column: Scheduling & Attachments -->
+            <div class="md:col-span-1 space-y-6">
+                <!-- Scheduling Card -->
+                <div class="card">
+                    <h3 class="section-title">Scheduling</h3>
+                    
+                    <div class="space-y-3 pb-4 border-b border-gray-200 dark:border-gray-700 mb-4">
+                        <div class="flex justify-between">
+                            <span class="text-sm font-medium text-gray-800 dark:text-white">Pickup Deadline</span>
+                            <span class="font-bold text-red-500 dark:text-red-400">Nov 17, 2025</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm font-medium text-gray-800 dark:text-white">Drop Off Deadline</span>
+                            <span class="font-bold text-red-500 dark:text-red-400">Nov 24, 2025</span>
+                        </div>
+                    </div>
+
+                    <!-- Attachments placeholder -->
+                    <div>
+                        <h3 class="text-base font-bold text-gray-800 dark:text-white mb-2">Attachments</h3>
+                        <a href="#" class="text-primary-blue dark:text-blue-400 hover:underline text-sm font-medium">Shipper Documents (.pdf)</a>
+                        <span class="text-xs text-gray-500 dark:text-gray-400 float-right">(View / Download)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Skid Details (Full Width Card) -->
+        <div class="card">
+            <h3 class="section-title">Skid Details</h3>
+            
+            <!-- Table Container for Horizontal Rule -->
+            <div class="overflow-x-auto">
+                <table class="min-w-full">
+                    <thead>
+                        <tr class="border-b border-gray-300 dark:border-gray-600">
+                            <th scope="col" class="skid-table-header text-left">QUANTITY</th>
+                            <th scope="col" class="skid-table-header text-left">DIMENSIONS (LxWxH IN)</th>
+                            <th scope="col" class="skid-table-header text-right">WEIGHT PER SKID (LBS)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Example Skid Row (No dividing border, just padding) -->
+                        <tr>
+                            <td class="skid-table-data text-left px-4">8</td>
+                            <td class="skid-table-data text-left px-4">48 x 40 x 94</td>
+                            <td class="skid-table-data text-right px-4">500</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 4. Special Notes (Alert/Highlight Card) -->
+        <div class="p-4 rounded-lg bg-yellow-100 dark:bg-yellow-900/50 border-l-4 border-yellow-500">
+            <h3 class="text-sm font-bold text-yellow-800 dark:text-yellow-200 mb-1">Special Notes</h3>
+            <p class="text-sm text-yellow-700 dark:text-yellow-300">
+                Shipped food, cannot have hazardous materials, needs a clean trailer. Carrier to book delivery appointments and accommodate after-hours delivery when required. Appointment needs to be booked ASAP and attended on time to avoid late fees. Receiving appointments can be booked via phone Monday – Friday 7 AM. Carrier needs to provide a lumper for this shipment. Pickup hours M-F: 6am-6pm. Delivery hours are Monday to Friday 6:30AM – Noon.
+            </p>
+        </div>
+
+        <!-- 5. Submit Bid Form (Full Width Card) -->
+        <div class="card">
+            <h3 class="section-title">Submit Your Bid</h3>
+            
+            <form id="rate-form" class="space-y-6">
+                
+                <!-- Rate Input Group -->
+                <div class="relative">
+                    <label for="carrier-rate" class="data-label text-primary-blue dark:text-blue-300 mb-2">
+                        $ USD Rate (Required)
+                    </label>
+                    <input
+                        type="number"
+                        id="carrier-rate"
+                        name="carrier-rate"
+                        min="0.01"
+                        step="0.01"
+                        placeholder="e.g., 1250.00"
+                        required
+                        class="w-full pl-4 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg text-lg font-semibold text-text-dark dark:text-white focus:border-primary-blue focus:ring-primary-blue dark:bg-gray-700 transition-colors duration-300"
+                    >
+                </div>
+
+                <!-- Notes Textarea Group -->
+                <div>
+                    <label for="carrier-notes" class="data-label text-gray-500 dark:text-gray-400 mb-2">
+                        Notes (e.g., Available today, 53’ Dry Van, Quote valid for 24 hours)
+                    </label>
+                    <textarea
+                        id="carrier-notes"
+                        name="carrier-notes"
+                        rows="3"
+                        placeholder="Optional details for the shipper..."
+                        class="w-full p-4 border border-gray-300 dark:border-gray-600 rounded-lg text-sm text-gray-700 dark:text-gray-300 focus:border-primary-blue focus:ring-primary-blue dark:bg-gray-700 transition-colors duration-300 resize-none"
+                    ></textarea>
+                </div>
+
+                <button
+                    type="submit"
+                    id="submit-button"
+                    class="w-full py-3 bg-primary-blue text-white text-base font-bold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-500/50 transition duration-150 ease-in-out disabled:opacity-50"
+                >
+                    Submit Bid
+                </button>
+            </form>
+
+            <!-- Status Message Area -->
+            <div id="status-message" class="mt-4 p-3 text-center hidden rounded-lg transition-all duration-500">
+                <!-- Message content will be injected here -->
+            </div>
+        </div>
+
     </div>
 
     <script>
@@ -267,7 +266,7 @@
              */
             function showStatus(message, type) {
                 // Clear previous classes
-                statusMessage.className = 'p-4 text-center transition-all duration-500';
+                statusMessage.className = 'mt-4 p-3 text-center transition-all duration-500 rounded-lg';
 
                 // Set new classes based on type
                 if (type === 'success') {
@@ -275,7 +274,6 @@
                 } else if (type === 'error') {
                     statusMessage.classList.add('bg-red-100', 'text-red-700', 'font-semibold');
                 } else {
-                    // Default to info style (e.g., submitting)
                     statusMessage.classList.add('bg-blue-100', 'text-blue-700', 'font-semibold');
                 }
                 

@@ -27,9 +27,10 @@
         .bid-box { background-color: #e5f1ff; border: 1px solid #93c5fd; }
         
         /* Custom spacing and centering for the Skid Details table */
-        .skid-table th:nth-child(1), .skid-table td:nth-child(1) { width: 25%; text-align: left; }
-        .skid-table th:nth-child(2), .skid-table td:nth-child(2) { width: 50%; text-align: center; } /* Centered */
-        .skid-table th:nth-child(3), .skid-table td:nth-child(3) { width: 25%; text-align: right; }
+        /* Adjusted widths to ensure DIMENSIONS is visually centered */
+        .skid-table th:nth-child(1), .skid-table td:nth-child(1) { width: 20%; text-align: left; }
+        .skid-table th:nth-child(2), .skid-table td:nth-child(2) { width: 60%; text-align: center; } 
+        .skid-table th:nth-child(3), .skid-table td:nth-child(3) { width: 20%; text-align: right; }
         .skid-table th { padding-top: 0.75rem; padding-bottom: 0.75rem; }
         .skid-table td { padding-top: 0.5rem; padding-bottom: 0.5rem; }
     </style>
@@ -38,7 +39,7 @@
 
     <div id="app" class="max-w-6xl mx-auto space-y-6">
         
-        <!-- REMOVED TRACKING LINK AND ADJUSTED HEADING MARGIN -->
+        <!-- 1. REMOVED TRACKING LINK -->
         <h1 class="text-2xl font-bold text-gray-800 mb-6">Load #L-4839: Detailed Shipment Information</h1>
         
         <!-- PICKUP AND DELIVERY STOPS -->
@@ -75,28 +76,30 @@
             <div class="md:col-span-2 info-card p-6">
                 <h2 class="section-header">Shipment Specifications</h2>
                 
-                <!-- Tighter Grid Layout - reduced vertical spacing (gap-y-2) -->
+                <!-- 2. Tighter Grid Layout - removed unnecessary vertical spacing classes -->
                 <div class="grid grid-cols-2 gap-y-2 text-sm">
                     
                     <!-- Row 1: Equipment (LTL) & Total Weight -->
-                    <div class="flex flex-col space-y-1 mb-2">
+                    <!-- Removed mb-2 from both divs to tighten spacing -->
+                    <div class="flex flex-col space-y-1">
                         <p class="text-xs text-gray-500">Equipment</p>
                         <p class="text-xl font-bold text-gray-900 leading-none">LTL</p>
                         <p class="text-gray-500 text-sm">(Dry Van)</p>
                     </div>
 
-                    <div class="flex flex-col space-y-1 text-right mb-2">
+                    <div class="flex flex-col space-y-1 text-right">
                         <p class="text-xs text-gray-500">Total Weight</p>
                         <p class="text-xl font-bold text-gray-900 leading-none">4,000 <span class="text-base font-normal text-gray-700">lbs</span></p>
                     </div>
 
                     <!-- Row 2: Total Skid Quantity & Est. Linear Feet -->
-                    <div class="flex flex-col space-y-1 mt-2">
+                    <!-- Removed mt-2 from both divs to tighten spacing -->
+                    <div class="flex flex-col space-y-1">
                         <p class="text-xs text-gray-500">Total Skid Quantity</p>
                         <p class="text-xl font-bold text-gray-900 leading-none">8</p>
                     </div>
 
-                    <div class="flex flex-col space-y-1 mt-2 text-right">
+                    <div class="flex flex-col space-y-1 text-right">
                         <p class="text-xs text-gray-500">Est. Linear Feet</p>
                         <p class="text-xl font-bold text-gray-900 leading-none">13.3 <span class="text-base font-normal text-gray-700">ft</span></p>
                     </div>
@@ -138,7 +141,7 @@
                 <!-- Using the custom class for controlled column widths/alignment -->
                 <table class="w-full text-sm skid-table"> 
                     <thead>
-                        <!-- Aligned header text: Left | Center | Right -->
+                        <!-- 3. Dimension header centered using 'text-center' and custom CSS for width -->
                         <tr class="text-left text-gray-500 uppercase tracking-wider font-bold border-b border-gray-200">
                             <th class="px-0">Quantity</th>
                             <th class="px-0 text-center">Dimensions (L×W×H IN)</th>
@@ -146,7 +149,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Aligned data: Left | Center | Right -->
+                        <!-- 3. Dimension data centered using 'text-center' and custom CSS for width -->
                         <tr>
                             <td class="px-0 text-gray-700 font-medium">8</td>
                             <td class="px-0 text-gray-700 font-medium text-center">48 x 40 x 94</td>

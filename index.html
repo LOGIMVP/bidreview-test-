@@ -18,36 +18,34 @@
         .section-header { 
             border-bottom: 2px solid #3b82f6; 
             padding-bottom: 8px; 
-            margin-bottom: 16px; 
+            margin-bottom: 12px; /* Reduced margin here */
             color: #1f2937; 
             font-weight: 700; 
-            font-size: 1.125rem; /* Ensure consistency with text-lg */
+            font-size: 1.125rem;
         }
         /* Style for the bid box */
         .bid-box { background-color: #e5f1ff; border: 1px solid #93c5fd; }
         
-        /* Custom spacing and centering for the Skid Details table */
-        /* Adjusted widths to ensure DIMENSIONS is visually centered */
-        .skid-table th:nth-child(1), .skid-table td:nth-child(1) { width: 20%; text-align: left; }
+        /* Custom spacing and centering for the Skid Details table (p-4 card padding means no need for px-0) */
+        .skid-table th:nth-child(1), .skid-table td:nth-child(1) { width: 20%; text-align: left; padding-left: 0; }
         .skid-table th:nth-child(2), .skid-table td:nth-child(2) { width: 60%; text-align: center; } 
-        .skid-table th:nth-child(3), .skid-table td:nth-child(3) { width: 20%; text-align: right; }
-        .skid-table th { padding-top: 0.75rem; padding-bottom: 0.75rem; }
-        .skid-table td { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+        .skid-table th:nth-child(3), .skid-table td:nth-child(3) { width: 20%; text-align: right; padding-right: 0; }
+        .skid-table th { padding-top: 0.5rem; padding-bottom: 0.5rem; } /* Reduced vertical padding */
+        .skid-table td { padding-top: 0.3rem; padding-bottom: 0.3rem; } /* Reduced vertical padding */
     </style>
 </head>
 <body class="p-4 md:p-8">
 
-    <div id="app" class="max-w-6xl mx-auto space-y-6">
+    <div id="app" class="max-w-6xl mx-auto space-y-4"> <!-- Reduced space-y-6 to space-y-4 -->
         
-        <!-- 1. REMOVED TRACKING LINK -->
-        <h1 class="text-2xl font-bold text-gray-800 mb-6">Load #L-4839: Detailed Shipment Information</h1>
+        <h1 class="text-2xl font-bold text-gray-800 mb-4">Load #L-4839: Detailed Shipment Information</h1> <!-- Reduced mb-6 to mb-4 -->
         
         <!-- PICKUP AND DELIVERY STOPS -->
         <div class="info-card p-0 overflow-hidden">
             <div class="grid md:grid-cols-2 divide-x divide-gray-200">
                 
-                <!-- Pickup Stop -->
-                <div class="p-6">
+                <!-- Pickup Stop - Padding reduced to p-4 -->
+                <div class="p-4">
                     <h2 class="section-header">Pickup Stops (1):</h2>
                     <div class="text-sm">
                         <p class="font-semibold text-gray-700">42158 Rd 33 E, Ste Anne, MB, R5H1R1, CA</p>
@@ -56,8 +54,8 @@
                     </div>
                 </div>
                 
-                <!-- Delivery Stop -->
-                <div class="p-6">
+                <!-- Delivery Stop - Padding reduced to p-4 -->
+                <div class="p-4">
                     <h2 class="section-header">Delivery Stops (1):</h2>
                     <div class="text-sm">
                         <p class="font-semibold text-gray-700">19580 TELEGRAPH TRAIL, Surrey, BC, V4N4H1, CA</p>
@@ -70,46 +68,55 @@
         </div>
 
         <!-- SPECIFICATIONS AND SCHEDULING -->
-        <div class="grid md:grid-cols-3 gap-6">
+        <div class="grid md:grid-cols-3 gap-4"> <!-- Reduced gap to gap-4 -->
             
-            <!-- Shipment Specifications Card (2/3 width) -->
-            <div class="md:col-span-2 info-card p-6">
+            <!-- Shipment Specifications Card (2/3 width) - Padding reduced to p-4 -->
+            <div class="md:col-span-2 info-card p-4">
                 <h2 class="section-header">Shipment Specifications</h2>
                 
-                <!-- 2. Tighter Grid Layout - removed unnecessary vertical spacing classes -->
-                <div class="grid grid-cols-2 gap-y-2 text-sm">
+                <!-- TIGHT LAYOUT: Grid to fill space and minimize vertical gaps -->
+                <div class="grid grid-cols-2 text-sm divide-x divide-gray-200 h-full">
                     
-                    <!-- Row 1: Equipment (LTL) & Total Weight -->
-                    <!-- Removed mb-2 from both divs to tighten spacing -->
-                    <div class="flex flex-col space-y-1">
-                        <p class="text-xs text-gray-500">Equipment</p>
-                        <p class="text-xl font-bold text-gray-900 leading-none">LTL</p>
-                        <p class="text-gray-500 text-sm">(Dry Van)</p>
+                    <!-- Left Column: Equipment & Quantity -->
+                    <div class="flex flex-col justify-between pr-4">
+                        
+                        <!-- Equipment (LTL) - Use leading-tight to crush vertical space -->
+                        <div class="pt-1">
+                            <p class="text-xs text-gray-500 font-medium leading-none">Equipment</p>
+                            <p class="text-3xl font-bold text-gray-900 leading-tight">LTL</p>
+                            <p class="text-gray-500 text-sm leading-tight">(Dry Van)</p>
+                        </div>
+
+                        <!-- Total Skid Quantity (8) -->
+                        <div class="pb-1">
+                            <p class="text-xs text-gray-500 font-medium leading-none">Total Skid Quantity</p>
+                            <p class="text-3xl font-bold text-gray-900 leading-tight">8</p>
+                        </div>
                     </div>
 
-                    <div class="flex flex-col space-y-1 text-right">
-                        <p class="text-xs text-gray-500">Total Weight</p>
-                        <p class="text-xl font-bold text-gray-900 leading-none">4,000 <span class="text-base font-normal text-gray-700">lbs</span></p>
-                    </div>
+                    <!-- Right Column: Weight & Linear Feet - Use leading-tight to crush vertical space -->
+                    <div class="flex flex-col justify-between pl-4 text-right">
 
-                    <!-- Row 2: Total Skid Quantity & Est. Linear Feet -->
-                    <!-- Removed mt-2 from both divs to tighten spacing -->
-                    <div class="flex flex-col space-y-1">
-                        <p class="text-xs text-gray-500">Total Skid Quantity</p>
-                        <p class="text-xl font-bold text-gray-900 leading-none">8</p>
-                    </div>
+                        <!-- Total Weight (4,000 lbs) -->
+                        <div class="pt-1">
+                            <p class="text-xs text-gray-500 font-medium leading-none">Total Weight</p>
+                            <p class="text-3xl font-bold text-gray-900 leading-tight">4,000 <span class="text-base font-normal text-gray-700">lbs</span></p>
+                        </div>
 
-                    <div class="flex flex-col space-y-1 text-right">
-                        <p class="text-xs text-gray-500">Est. Linear Feet</p>
-                        <p class="text-xl font-bold text-gray-900 leading-none">13.3 <span class="text-base font-normal text-gray-700">ft</span></p>
+                        <!-- Est. Linear Feet (13.3 ft) -->
+                        <div class="pb-1">
+                            <p class="text-xs text-gray-500 font-medium leading-none">Est. Linear Feet</p>
+                            <p class="text-3xl font-bold text-gray-900 leading-tight">13.3 <span class="text-base font-normal text-gray-700">ft</span></p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Scheduling and Attachments Card (1/3 width) -->
-            <div class="md:col-span-1 info-card p-6">
+            <!-- Scheduling and Attachments Card (1/3 width) - Padding reduced to p-4 -->
+            <div class="md:col-span-1 info-card p-4">
                 <h2 class="section-header">Scheduling</h2>
-                <div class="space-y-3 text-sm pb-4 mb-4 border-b border-gray-200">
+                <!-- Reduced space-y from 3 to 2, and removed pb-4/mb-4 border -->
+                <div class="space-y-2 text-sm border-b border-gray-200 pb-2 mb-2">
                     <div class="flex justify-between">
                         <p class="text-gray-700 font-medium">Pickup Deadline</p>
                         <p class="font-bold text-red-600">Nov 17, 2025</p>
@@ -119,7 +126,7 @@
                         <p class="font-bold text-gray-700">Nov 24, 2025</p>
                     </div>
                 </div>
-                <h3 class="font-bold text-gray-700 mt-4 mb-2">Attachments</h3>
+                <h3 class="font-bold text-gray-700 mt-2 mb-2">Attachments</h3>
                 <div class="flex items-center justify-between text-sm">
                     <span class="truncate text-blue-600 hover:text-blue-800">Shipper Documents (.pdf)</span>
                     <div class="flex space-x-2">
@@ -134,14 +141,12 @@
             </div>
         </div>
 
-        <!-- SKID DETAILS TABLE -->
-        <div class="info-card p-6">
+        <!-- SKID DETAILS TABLE - Padding reduced to p-4 -->
+        <div class="info-card p-4">
             <h2 class="section-header">Skid Details</h2>
             <div class="overflow-x-auto">
-                <!-- Using the custom class for controlled column widths/alignment -->
                 <table class="w-full text-sm skid-table"> 
                     <thead>
-                        <!-- 3. Dimension header centered using 'text-center' and custom CSS for width -->
                         <tr class="text-left text-gray-500 uppercase tracking-wider font-bold border-b border-gray-200">
                             <th class="px-0">Quantity</th>
                             <th class="px-0 text-center">Dimensions (L×W×H IN)</th>
@@ -149,7 +154,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- 3. Dimension data centered using 'text-center' and custom CSS for width -->
                         <tr>
                             <td class="px-0 text-gray-700 font-medium">8</td>
                             <td class="px-0 text-gray-700 font-medium text-center">48 x 40 x 94</td>
@@ -160,16 +164,16 @@
             </div>
         </div>
 
-        <!-- SPECIAL NOTES -->
-        <div class="info-card p-6 bg-yellow-50 border-yellow-500 border-l-4">
+        <!-- SPECIAL NOTES - Padding reduced to p-4 -->
+        <div class="info-card p-4 bg-yellow-50 border-yellow-500 border-l-4">
             <h2 class="text-lg font-bold text-yellow-800 mb-2">Special Notes</h2>
             <p class="text-sm text-gray-700 leading-relaxed">
                 Shipped food, cannot have hazardous materials, needs a clean trailer. Carrier to book delivery appointments and accommodate after-hours delivery where required. Appointment needs to be booked ASAP and attended on time to avoid late fees. Receiving appointments can be booked via phone Monday – Friday 7 AM. Carrier needs to provide a lumper for this shipment. Pickup hours M-F: 6am-6pm. Delivery hours are Monday to Friday 6:30AM – Noon.
             </p>
         </div>
 
-        <!-- SUBMIT YOUR BID FORM -->
-        <div class="info-card p-6 bid-box">
+        <!-- SUBMIT YOUR BID FORM - Padding reduced to p-4 -->
+        <div class="info-card p-4 bid-box">
             <h2 class="section-header !border-blue-800 !text-blue-800">Submit Your Bid</h2>
             <form id="bidForm">
                 <!-- Bid Amount -->

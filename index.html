@@ -26,10 +26,10 @@
         /* Style for the bid box */
         .bid-box { background-color: #e5f1ff; border: 1px solid #93c5fd; }
         
-        /* Custom spacing for the Skid Details table to ensure clean columns */
-        .skid-table th:nth-child(1), .skid-table td:nth-child(1) { width: 15%; }
-        .skid-table th:nth-child(2), .skid-table td:nth-child(2) { width: 45%; }
-        .skid-table th:nth-child(3), .skid-table td:nth-child(3) { width: 40%; text-align: right; }
+        /* Custom spacing and centering for the Skid Details table */
+        .skid-table th:nth-child(1), .skid-table td:nth-child(1) { width: 25%; text-align: left; }
+        .skid-table th:nth-child(2), .skid-table td:nth-child(2) { width: 50%; text-align: center; } /* Centered */
+        .skid-table th:nth-child(3), .skid-table td:nth-child(3) { width: 25%; text-align: right; }
         .skid-table th { padding-top: 0.75rem; padding-bottom: 0.75rem; }
         .skid-table td { padding-top: 0.5rem; padding-bottom: 0.5rem; }
     </style>
@@ -38,13 +38,10 @@
 
     <div id="app" class="max-w-6xl mx-auto space-y-6">
         
-        <h1 class="text-2xl font-bold text-gray-800 mb-2">Load #L-4839: Detailed Shipment Information</h1>
-        <div class="text-sm mb-6">
-            <span class="text-gray-500">Tracking Link:</span> 
-            <a href="#" class="text-blue-600 hover:text-blue-800">https://bidreview-test/L4839</a>
-        </div>
+        <!-- REMOVED TRACKING LINK AND ADJUSTED HEADING MARGIN -->
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">Load #L-4839: Detailed Shipment Information</h1>
         
-        <!-- PICKUP AND DELIVERY STOPS (Merged into a single card with a vertical divider) -->
+        <!-- PICKUP AND DELIVERY STOPS -->
         <div class="info-card p-0 overflow-hidden">
             <div class="grid md:grid-cols-2 divide-x divide-gray-200">
                 
@@ -78,29 +75,28 @@
             <div class="md:col-span-2 info-card p-6">
                 <h2 class="section-header">Shipment Specifications</h2>
                 
-                <!-- NEW GRID LAYOUT: 2 columns for data display -->
-                <div class="grid grid-cols-2 gap-y-4 text-sm">
+                <!-- Tighter Grid Layout - reduced vertical spacing (gap-y-2) -->
+                <div class="grid grid-cols-2 gap-y-2 text-sm">
                     
                     <!-- Row 1: Equipment (LTL) & Total Weight -->
-                    <div class="flex flex-col space-y-1">
+                    <div class="flex flex-col space-y-1 mb-2">
                         <p class="text-xs text-gray-500">Equipment</p>
-                        <!-- FIX 1: LTL size set to text-xl and bold -->
                         <p class="text-xl font-bold text-gray-900 leading-none">LTL</p>
                         <p class="text-gray-500 text-sm">(Dry Van)</p>
                     </div>
 
-                    <div class="flex flex-col space-y-1 text-right">
+                    <div class="flex flex-col space-y-1 text-right mb-2">
                         <p class="text-xs text-gray-500">Total Weight</p>
                         <p class="text-xl font-bold text-gray-900 leading-none">4,000 <span class="text-base font-normal text-gray-700">lbs</span></p>
                     </div>
 
                     <!-- Row 2: Total Skid Quantity & Est. Linear Feet -->
-                    <div class="flex flex-col space-y-1 mt-4">
+                    <div class="flex flex-col space-y-1 mt-2">
                         <p class="text-xs text-gray-500">Total Skid Quantity</p>
                         <p class="text-xl font-bold text-gray-900 leading-none">8</p>
                     </div>
 
-                    <div class="flex flex-col space-y-1 mt-4 text-right">
+                    <div class="flex flex-col space-y-1 mt-2 text-right">
                         <p class="text-xs text-gray-500">Est. Linear Feet</p>
                         <p class="text-xl font-bold text-gray-900 leading-none">13.3 <span class="text-base font-normal text-gray-700">ft</span></p>
                     </div>
@@ -123,7 +119,6 @@
                 <h3 class="font-bold text-gray-700 mt-4 mb-2">Attachments</h3>
                 <div class="flex items-center justify-between text-sm">
                     <span class="truncate text-blue-600 hover:text-blue-800">Shipper Documents (.pdf)</span>
-                    <!-- FIX 2: Replaced text link with two small buttons -->
                     <div class="flex space-x-2">
                         <button onclick="console.log('Viewing document...')" class="px-2 py-1 text-xs font-semibold rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-100 transition duration-150">
                             View
@@ -140,21 +135,21 @@
         <div class="info-card p-6">
             <h2 class="section-header">Skid Details</h2>
             <div class="overflow-x-auto">
-                <!-- Added custom class for targeted styling improvements -->
+                <!-- Using the custom class for controlled column widths/alignment -->
                 <table class="w-full text-sm skid-table"> 
                     <thead>
-                        <!-- Table header text is medium gray and bold -->
+                        <!-- Aligned header text: Left | Center | Right -->
                         <tr class="text-left text-gray-500 uppercase tracking-wider font-bold border-b border-gray-200">
                             <th class="px-0">Quantity</th>
-                            <th class="px-0">Dimensions (L×W×H IN)</th>
+                            <th class="px-0 text-center">Dimensions (L×W×H IN)</th>
                             <th class="px-0 text-right">Weight Per Skid (LBS)</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Table data is plain text -->
+                        <!-- Aligned data: Left | Center | Right -->
                         <tr>
                             <td class="px-0 text-gray-700 font-medium">8</td>
-                            <td class="px-0 text-gray-700 font-medium">48 x 40 x 94</td>
+                            <td class="px-0 text-gray-700 font-medium text-center">48 x 40 x 94</td>
                             <td class="px-0 text-gray-700 font-medium text-right">500</td>
                         </tr>
                     </tbody>

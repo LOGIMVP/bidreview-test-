@@ -7,359 +7,272 @@
     <!-- Load Tailwind CSS from CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Define the primary application font */
-        :root {
-            font-family: 'Inter', sans-serif;
+        /* Custom styles for readability and spacing */
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
+        .info-card { 
+            background-color: white; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05); 
         }
-        /* Custom Utility Classes to match the screenshot design */
-        .card {
-            /* White background, rounded corners, subtle shadow, NO visible border */
-            @apply bg-white dark:bg-gray-800 rounded-lg shadow-md p-5;
+        /* CRITICAL FIX: The blue border line under major headers */
+        .section-header { 
+            border-bottom: 2px solid #3b82f6; 
+            padding-bottom: 8px; 
+            margin-bottom: 16px; 
+            color: #1f2937; 
+            font-weight: 700; 
+            font-size: 1.125rem; /* Ensure consistency with text-lg */
         }
-        .blue-separator {
-            /* Thin blue line used under major headers/titles */
-            @apply border-b border-primary-blue;
-        }
-        .section-title {
-            /* Matches the size and weight of the titles */
-            @apply text-lg font-bold text-gray-800 dark:text-white mb-4;
-        }
-        .data-label-small {
-            /* Small, gray, standard weight text for labels */
-            @apply text-xs font-normal text-gray-500 block;
-        }
-        .data-value-large {
-            /* Large, bold text for key metrics (LTL, Weight, etc.) */
-            @apply text-xl font-extrabold text-gray-800 dark:text-white leading-tight;
-        }
-        /* Style for the Skid Details table (removed background color from header) */
-        .skid-table-header {
-            @apply text-sm font-bold text-gray-500 uppercase tracking-wider px-0 pt-0 pb-3 text-left;
-        }
+        /* Style for the bid box */
+        .bid-box { background-color: #e5f1ff; border: 1px solid #93c5fd; }
     </style>
-    <script>
-        tailwind.config = {
-            darkMode: 'class', 
-            theme: {
-                extend: {
-                    colors: {
-                        'primary-blue': '#1a73e8', 
-                        'text-dark': '#374151', 
-                        'bg-light': '#f3f4f6', /* The light gray body background */
-                    }
-                }
-            }
-        }
-    </script>
 </head>
-<body class="bg-bg-light dark:bg-gray-900 min-h-screen p-4 md:p-8">
+<body class="p-4 md:p-8">
 
     <div id="app" class="max-w-6xl mx-auto space-y-6">
-
-        <!-- Page Header & Tracking Link -->
-        <header class="mb-6">
-            <h1 class="text-2xl font-bold text-gray-800 dark:text-white">
-                Load L#4839: Detailed Shipment Information
-            </h1>
-            <div class="text-sm mt-1 mb-4">
-                <span class="text-gray-500">Tracking Link:</span> 
-                <a href="#" class="text-primary-blue hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-500">https://cloud.samsara.com/load-details/L-4839</a>
-            </div>
-            <!-- CRITICAL FIX: Blue Separator Line under the header -->
-            <hr class="blue-separator">
-        </header>
-
-        <!-- 1. Pickup/Delivery Stops -->
-        <div class="card p-0 overflow-hidden shadow-md">
-            <!-- Grid is used with an internal divider to create the column separator line -->
-            <div class="grid grid-cols-1 md:grid-cols-2 divide-x divide-gray-200 dark:divide-gray-700">
+        
+        <h1 class="text-2xl font-bold text-gray-800 mb-2">Load #L-4839: Detailed Shipment Information</h1>
+        <div class="text-sm mb-6">
+            <span class="text-gray-500">Tracking Link:</span> 
+            <a href="#" class="text-blue-600 hover:text-blue-800">https://bidreview-test/L4839</a>
+        </div>
+        
+        <!-- PICKUP AND DELIVERY STOPS (CRITICAL FIX: Merged into a single card with a vertical divider) -->
+        <div class="info-card p-0 overflow-hidden">
+            <div class="grid md:grid-cols-2 divide-x divide-gray-200">
                 
                 <!-- Pickup Stop -->
-                <div class="p-5">
-                    <h2 class="text-base font-bold text-gray-800 dark:text-white mb-1">Pickup Stops (1):</h2>
-                    <p class="text-sm font-normal text-gray-800 dark:text-white">42158 Rd 33 E, Ste Anne, MB, R5H1R1, CA</p>
-                    <p class="text-sm text-gray-500">Contact: La Cocina Foods</p>
-                    <a href="tel:204-381-4471" class="text-primary-blue text-sm font-medium">204-381-4471</a>
+                <div class="p-6">
+                    <h2 class="section-header">Pickup Stops (1):</h2>
+                    <div class="text-sm">
+                        <p class="font-semibold text-gray-700">42158 Rd 33 E, Ste Anne, MB, R5H1R1, CA</p>
+                        <p class="text-gray-500">Contact: La Cocina Foods</p>
+                        <a href="tel:204-381-4471" class="text-blue-600 hover:text-blue-800">204.381.4471</a>
+                    </div>
                 </div>
                 
                 <!-- Delivery Stop -->
-                <div class="p-5">
-                    <h2 class="text-base font-bold text-gray-800 dark:text-white mb-1">Delivery Stops (1):</h2>
-                    <p class="text-sm font-normal text-gray-800 dark:text-white">19580 TELEGRAPH TRAIL, Surrey, BC, V4N4H1, CA</p>
-                    <p class="text-sm text-gray-500">Contact: Associated Grocers</p>
-                    <p class="text-sm text-red-600 font-medium inline-block">Appointment Required</p>
-                    <a href="tel:604-888-7081" class="text-primary-blue text-sm font-medium">(604) 888-7081 ext 357</a>
+                <div class="p-6">
+                    <h2 class="section-header">Delivery Stops (1):</h2>
+                    <div class="text-sm">
+                        <p class="font-semibold text-gray-700">19580 TELEGRAPH TRAIL, Surrey, BC, V4N4H1, CA</p>
+                        <p class="text-gray-500">Contact: Associated Grocers</p>
+                        <p class="text-red-600 font-bold block mb-1">Appointment Required</p>
+                        <a href="tel:6048887061" class="text-blue-600 hover:text-blue-800">(604) 888-7061 ext 357</a>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- 2. Shipment Specifications & Scheduling (Two-Column Layout) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- SPECIFICATIONS AND SCHEDULING -->
+        <div class="grid md:grid-cols-3 gap-6">
             
-            <!-- Left Column: Specs Card (2/3 width) -->
-            <div class="md:col-span-2 card">
-                <h3 class="section-title">Shipment Specifications</h3>
+            <!-- Specifications (2/3 width) -->
+            <div class="md:col-span-2 info-card p-6">
+                <h2 class="section-header">Shipment Specifications</h2>
                 
-                <!-- CRITICAL FIX: The specifications are implicitly split into two groups, left and right aligned -->
+                <!-- CRITICAL FIX: Ensure left side content is left-aligned and right side is right-aligned -->
                 <div class="grid grid-cols-2 gap-y-6">
-                    
-                    <!-- LEFT COLUMN GROUP -->
+                    <!-- Left Column (LTL, Skids) -->
                     <div class="space-y-6">
-                        <!-- Equipment/LTL -->
-                        <div>
-                            <p class="data-label-small">Equipment</p>
-                            <p class="data-value-large">LTL</p>
-                            <p class="text-sm text-gray-500">(Dry Van)</p>
+                        <div class="detail-item">
+                            <p class="text-xs text-gray-500 mb-1">Equipment</p>
+                            <p class="text-3xl font-bold text-gray-900 leading-none">LTL</p>
+                            <p class="text-gray-500 text-sm">(Dry Van)</p>
                         </div>
-                        <!-- Total Skid Quantity -->
-                        <div>
-                            <p class="data-label-small">Total Skid Quantity</p>
-                            <p class="data-value-large">8</p>
+                        <div class="detail-item">
+                            <p class="text-xs text-gray-500 mb-1">Total Skid Quantity</p>
+                            <p class="text-xl font-bold text-gray-900 leading-none">8</p>
                         </div>
                     </div>
                     
-                    <!-- RIGHT COLUMN GROUP (Right aligned) -->
+                    <!-- Right Column (Weight, Linear Feet) - Right Aligned -->
                     <div class="space-y-6 text-right">
-                        <!-- Total Weight -->
-                        <div>
-                            <p class="data-label-small">Total Weight</p>
-                            <p class="data-value-large">4,000 <span class="text-base font-normal">lbs</span></p>
+                        <div class="detail-item">
+                            <p class="text-xs text-gray-500 mb-1">Total Weight</p>
+                            <p class="text-xl font-bold text-gray-900 leading-none">4,000 <span class="text-base font-normal text-gray-700">lbs</span></p>
                         </div>
-                        <!-- Estimated Linear Feet -->
-                        <div>
-                            <p class="data-label-small">Est. Linear Feet</p>
-                            <p class="data-value-large">13.3 <span class="text-base font-normal">ft</span></p>
+                        <div class="detail-item">
+                            <p class="text-xs text-gray-500 mb-1">Est. Linear Feet</p>
+                            <p class="text-xl font-bold text-gray-900 leading-none">13.3 <span class="text-base font-normal text-gray-700">ft</span></p>
                         </div>
                     </div>
-
                 </div>
             </div>
 
-            <!-- Right Column: Scheduling & Attachments (1/3 width) -->
-            <div class="md:col-span-1 space-y-6">
-                <!-- Scheduling Card -->
-                <div class="card">
-                    <h3 class="section-title">Scheduling</h3>
-                    
-                    <!-- Deadlines Section -->
-                    <div class="space-y-3 pb-4 mb-4">
-                        <div class="flex justify-between">
-                            <span class="text-sm font-medium text-gray-800 dark:text-white">Pickup Deadline</span>
-                            <span class="font-bold text-red-500 dark:text-red-400">Nov 17, 2025</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-sm font-medium text-gray-800 dark:text-white">Drop Off Deadline</span>
-                            <span class="font-bold text-red-500 dark:text-red-400">Nov 24, 2025</span>
-                        </div>
+            <!-- Scheduling and Attachments (1/3 width) -->
+            <div class="md:col-span-1 info-card p-6">
+                <h2 class="section-header">Scheduling</h2>
+                <div class="space-y-3 text-sm pb-4 mb-4 border-b border-gray-200">
+                    <div class="flex justify-between">
+                        <p class="text-gray-700 font-medium">Pickup Deadline</p>
+                        <p class="font-bold text-red-600">Nov 17, 2025</p>
                     </div>
-
-                    <!-- CRITICAL FIX: Blue Separator Line separates Deadlines from Attachments -->
-                    <hr class="blue-separator mb-4">
-
-                    <!-- Attachments -->
-                    <div>
-                        <h3 class="text-base font-bold text-gray-800 dark:text-white mb-2">Attachments</h3>
-                        <a href="#" class="text-primary-blue dark:text-blue-400 hover:underline text-sm font-medium">Shipper Documents (.pdf)</a>
-                        <span class="text-xs text-gray-500 dark:text-gray-400 float-right">(View / Download)</span>
+                    <div class="flex justify-between">
+                        <p class="text-gray-700 font-medium">Drop Off Deadline</p>
+                        <p class="font-bold text-gray-700">Nov 24, 2025</p>
                     </div>
                 </div>
+                <h3 class="font-bold text-gray-700 mt-4 mb-2">Attachments</h3>
+                <a href="#" class="text-blue-600 text-sm hover:underline flex items-center justify-between">
+                    <span class="truncate">Shipper Documents (.pdf)</span>
+                    <span class="ml-2 text-xs text-gray-500">(View / Download)</span>
+                </a>
             </div>
         </div>
 
-        <!-- 3. Skid Details (Full Width Card) -->
-        <div class="card">
-            <h3 class="section-title">Skid Details</h3>
-            
-            <!-- CRITICAL FIX: Blue Separator Line under the Skid Details title -->
-            <hr class="blue-separator mb-4">
-            
-            <!-- Table Container -->
+        <!-- SKID DETAILS TABLE -->
+        <div class="info-card p-6">
+            <h2 class="section-header">Skid Details</h2>
             <div class="overflow-x-auto">
-                <table class="min-w-full">
+                <table class="w-full text-sm">
                     <thead>
-                        <tr>
-                            <!-- Removed bg-gray from header, adjusted padding to match density -->
-                            <th scope="col" class="skid-table-header text-left">QUANTITY</th>
-                            <th scope="col" class="skid-table-header text-left">DIMENSIONS (LxWxH IN)</th>
-                            <th scope="col" class="skid-table-header text-right">WEIGHT PER SKID (LBS)</th>
-                        </tr>
-                        <!-- Gray line under the table headers -->
-                        <tr class="border-b border-gray-200 dark:border-gray-700">
-                            <th colspan="3" class="p-0"></th>
+                        <!-- Table header text is medium gray and bold -->
+                        <tr class="text-left text-gray-500 uppercase tracking-wider font-bold border-b border-gray-200">
+                            <th class="py-2 px-0">Quantity</th>
+                            <th class="py-2 px-0">Dimensions (L×W×H IN)</th>
+                            <th class="py-2 px-0 text-right">Weight Per Skid (LBS)</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- Table data is plain text -->
                         <tr>
-                            <td class="text-sm text-gray-800 font-normal px-0 py-3 text-left">8</td>
-                            <td class="text-sm text-gray-800 font-normal px-0 py-3 text-left">48 x 40 x 94</td>
-                            <td class="text-sm text-gray-800 font-normal px-0 py-3 text-right">500</td>
+                            <td class="py-2 px-0 text-gray-700 font-medium">8</td>
+                            <td class="py-2 px-0 text-gray-700 font-medium">48 x 40 x 94</td>
+                            <td class="py-2 px-0 text-gray-700 font-medium text-right">500</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- 4. Special Notes (Alert/Highlight Card) -->
-        <div class="p-4 rounded-lg bg-yellow-100 dark:bg-yellow-900/50 border-l-4 border-yellow-500">
-            <h3 class="text-sm font-bold text-yellow-800 dark:text-yellow-200 mb-1">Special Notes</h3>
-            <p class="text-sm text-yellow-700 dark:text-yellow-300">
-                Shipped food, cannot have hazardous materials, needs a clean trailer. Carrier to book delivery appointments and accommodate after-hours delivery when required. Appointment needs to be booked ASAP and attended on time to avoid late fees. Receiving appointments can be booked via phone Monday – Friday 7 AM. Carrier needs to provide a lumper for this shipment. Pickup hours M-F: 6am-6pm. Delivery hours are Monday to Friday 6:30AM – Noon.
+        <!-- SPECIAL NOTES -->
+        <div class="info-card p-6 bg-yellow-50 border-yellow-500 border-l-4">
+            <h2 class="text-lg font-bold text-yellow-800 mb-2">Special Notes</h2>
+            <p class="text-sm text-gray-700 leading-relaxed">
+                Shipped food, cannot have hazardous materials, needs a clean trailer. Carrier to book delivery appointments and accommodate after-hours delivery where required. Appointment needs to be booked ASAP and attended on time to avoid late fees. Receiving appointments can be booked via phone Monday – Friday 7 AM. Carrier needs to provide a lumper for this shipment. Pickup hours M-F: 6am-6pm. Delivery hours are Monday to Friday 6:30AM – Noon.
             </p>
         </div>
 
-        <!-- 5. Submit Bid Form (Full Width Card) -->
-        <div class="card">
-            <h3 class="section-title">Submit Your Bid</h3>
-            
-            <!-- CRITICAL FIX: Blue Separator Line under the Bid title -->
-            <hr class="blue-separator mb-6">
-            
-            <form id="rate-form" class="space-y-6">
-                
-                <!-- Rate Input Group -->
-                <div class="relative">
-                    <label for="carrier-rate" class="data-label-small text-primary-blue dark:text-blue-300 mb-2">
-                        $ USD Rate (Required)
-                    </label>
-                    <input
-                        type="number"
-                        id="carrier-rate"
-                        name="carrier-rate"
-                        min="0.01"
+        <!-- SUBMIT YOUR BID FORM -->
+        <div class="info-card p-6 bid-box">
+            <h2 class="section-header !border-blue-800 !text-blue-800">Submit Your Bid</h2>
+            <form id="bidForm">
+                <!-- Bid Amount -->
+                <div class="mb-4">
+                    <label for="bidRate" class="block text-sm font-medium text-gray-700 mb-1">$ <span id="currencySymbol">USD</span> Rate (Required)</label>
+                    <input 
+                        type="number" 
+                        id="bidRate" 
+                        name="bidRate" 
+                        required 
+                        min="0.01" 
                         step="0.01"
-                        placeholder="e.g., 1250.00"
-                        required
-                        class="w-full pl-4 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg text-lg font-semibold text-gray-800 dark:text-white focus:border-primary-blue focus:ring-primary-blue dark:bg-gray-700 transition-colors duration-300"
-                    >
+                        class="w-full px-4 py-3 border border-blue-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-lg font-semibold shadow-sm" 
+                        placeholder="e.g., 1250.00">
                 </div>
 
-                <!-- Notes Textarea Group -->
-                <div>
-                    <label for="carrier-notes" class="data-label-small text-gray-500 dark:text-gray-400 mb-2">
-                        Notes (e.g., Available today, 53’ Dry Van, Quote valid for 24 hours)
-                    </label>
-                    <textarea
-                        id="carrier-notes"
-                        name="carrier-notes"
-                        rows="3"
-                        placeholder="Optional details for the shipper..."
-                        class="w-full p-4 border border-gray-300 dark:border-gray-600 rounded-lg text-sm text-gray-700 dark:text-gray-300 focus:border-primary-blue focus:ring-primary-blue dark:bg-gray-700 transition-colors duration-300 resize-none"
-                    ></textarea>
+                <!-- Notes/Details -->
+                <div class="mb-6">
+                    <label for="bidNotes" class="block text-sm font-medium text-gray-700 mb-1">Notes (e.g., Available today, 53' Dry Van, Quote valid for 24 hours)</label>
+                    <textarea 
+                        id="bidNotes" 
+                        name="bidNotes" 
+                        rows="3" 
+                        class="w-full px-4 py-3 border border-blue-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-base shadow-sm resize-none" 
+                        placeholder="Optional details for the shipper..."></textarea>
                 </div>
 
-                <button
-                    type="submit"
-                    id="submit-button"
-                    class="w-full py-3 bg-primary-blue text-white text-base font-bold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-500/50 transition duration-150 ease-in-out disabled:opacity-50"
-                >
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-150 ease-in-out shadow-lg">
                     Submit Bid
                 </button>
             </form>
-
-            <!-- Status Message Area -->
-            <div id="status-message" class="mt-4 p-3 text-center hidden rounded-lg transition-all duration-500">
-                <!-- Message content will be injected here -->
-            </div>
+            
+            <div id="statusMessage" class="mt-4 p-3 text-center text-sm font-semibold hidden rounded-lg"></div>
         </div>
-
     </div>
 
     <script>
-        // Mock data
-        const MOCK_SHIPMENT_ID = "L#4839"; 
+        // --- PROTOTYPE SIMULATION LOGIC ---
+        const bidForm = document.getElementById('bidForm');
+        const statusMessage = document.getElementById('statusMessage');
+        const bidRateInput = document.getElementById('bidRate');
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('rate-form');
-            const rateInput = document.getElementById('carrier-rate');
-            const notesInput = document.getElementById('carrier-notes');
-            const submitButton = document.getElementById('submit-button');
-            const statusMessage = document.getElementById('status-message');
+        const LOAD_ID = "L-4839";
+        const CARRIER_ID = "CARR-987"; 
+        const CARRIER_EMAIL = "carrier@example.com"; 
 
-            /**
-             * Helper function to show status messages.
-             * @param {string} message - The message text.
-             * @param {string} type - 'success' or 'error'.
-             */
-            function showStatus(message, type) {
-                // Clear previous classes
-                statusMessage.className = 'mt-4 p-3 text-center transition-all duration-500 rounded-lg';
+        /**
+         * Shows a status message to the user.
+         * @param {string} message - The message text.
+         * @param {string} type - 'success' or 'error'.
+         */
+        function showStatus(message, type) {
+            statusMessage.textContent = message;
+            statusMessage.classList.remove('hidden', 'bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
+            
+            if (type === 'success') {
+                statusMessage.classList.add('bg-green-100', 'text-green-700');
+            } else {
+                statusMessage.classList.add('bg-red-100', 'text-red-700');
+            }
+            statusMessage.style.display = 'block';
+        }
 
-                // Set new classes based on type
-                if (type === 'success') {
-                    statusMessage.classList.add('bg-green-100', 'text-green-700', 'font-semibold');
-                } else if (type === 'error') {
-                    statusMessage.classList.add('bg-red-100', 'text-red-700', 'font-semibold');
-                } else {
-                    statusMessage.classList.add('bg-blue-100', 'text-blue-700', 'font-semibold');
-                }
-                
-                // Determine icon based on type (using simple SVG for display)
-                let iconPath = 'M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'; 
-                if (type === 'success') {
-                    iconPath = 'M5 13l4 4L19 7';
-                } else if (type === 'error') {
-                    iconPath = 'M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z';
-                }
-                
-                statusMessage.innerHTML = `
-                    <div class="flex items-center justify-center">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${iconPath}"></path>
-                        </svg>
-                        <p>${message}</p>
-                    </div>
-                `;
-                statusMessage.classList.remove('hidden');
+        bidForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const rate = bidRateInput.value;
+            const notes = document.getElementById('bidNotes').value;
+            const submitButton = bidForm.querySelector('button');
+
+            if (!rate || parseFloat(rate) <= 0) {
+                showStatus('Please enter a valid rate greater than zero.', 'error');
+                return;
             }
 
-            // Handle form submission
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+            statusMessage.style.display = 'none';
+
+            // 1. COLLECT THE DATA
+            const bidData = {
+                load_id: LOAD_ID,
+                carrier_id: CARRIER_ID,
+                carrier_email: CARRIER_EMAIL,
+                // Combine the structured rate and the unstructured notes.
+                raw_carrier_bid_text: `My rate for Load ${LOAD_ID} is $${parseFloat(rate).toFixed(2)} USD. Notes: ${notes}.`
+            };
+
+            try {
+                // 2. SIMULATE API CALL
+                console.log('--- Data Prepared for Bridge (Mock Submission) ---');
+                console.log(JSON.stringify(bidData, null, 2));
+
+                // Simulate a network delay
+                await new Promise(resolve => setTimeout(resolve, 1500)); 
                 
-                const rate = parseFloat(rateInput.value);
-
-                if (isNaN(rate) || rate <= 0) {
-                    showStatus("Please enter a valid rate greater than zero.", 'error');
-                    return;
-                }
-
-                submitButton.disabled = true;
-                submitButton.textContent = 'Submitting Bid...';
-                statusMessage.classList.add('hidden');
+                // SIMULATE SUCCESS
+                showStatus(`Bid for Load ${LOAD_ID} submitted successfully! Your rate of $${parseFloat(rate).toFixed(2)} USD has been recorded.`, 'success');
                 
-                try {
-                    const payload = {
-                        shipmentId: MOCK_SHIPMENT_ID,
-                        rate: rate.toFixed(2), 
-                        carrierNotes: notesInput.value.trim(),
-                    };
+                submitButton.textContent = 'Bid Submitted';
+                // Lock the form fields after success
+                bidRateInput.disabled = true;
+                document.getElementById('bidNotes').disabled = true;
+                submitButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                submitButton.classList.add('bg-gray-400', 'cursor-not-allowed');
 
-                    console.log('Final Bid Payload:', payload);
 
-                    // Mock API call delay
-                    await new Promise(resolve => setTimeout(resolve, 2000)); 
-
-                    // --- Successful Submission Response ---
-                    showStatus(`Bid of $${rate.toFixed(2)} successfully submitted for Load #${MOCK_SHIPMENT_ID}. Thank you!`, 'success');
-                    
-                    // Lock the form after success
-                    rateInput.disabled = true;
-                    notesInput.disabled = true;
-                    submitButton.textContent = 'Bid Submitted';
-                    submitButton.classList.remove('bg-primary-blue', 'hover:bg-blue-700');
-                    submitButton.classList.add('bg-gray-400', 'cursor-not-allowed');
-
-                } catch (error) {
-                    // --- Error Handling ---
-                    submitButton.disabled = false;
-                    submitButton.textContent = 'Submit Bid';
-
-                    showStatus(`Submission failed. Please check your network or try again. (${error.message})`, 'error');
-                }
-            });
-            
-            rateInput.focus();
+            } catch (error) {
+                // SIMULATE ERROR
+                showStatus(`Submission failed: ${error.message}. Please try again.`, 'error');
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit Bid';
+            }
         });
+
+        // Set currency symbol based on mock data
+        document.getElementById('currencySymbol').textContent = 'USD';
     </script>
 </body>
 </html>
